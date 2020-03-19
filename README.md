@@ -1,2 +1,2 @@
 # Hogwarts-Line-Hopping-Game
-hi, its mckenzie
+## 406 Sprint Project B
