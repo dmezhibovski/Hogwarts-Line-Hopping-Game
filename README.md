@@ -1,3 +1,2 @@
 # Hogwarts-Line-Hopping-Game
-hi, its mckenzie\n
-Sup legends
+hi, its mckenzie Sup legends
