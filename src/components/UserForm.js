@@ -4,6 +4,15 @@ import FadeIn from 'react-fade-in'
 import Main from './Main'
 import Form from 'react-bootstrap/Form'
 
+function play() {
+    ReactDOM.render(
+        <Main
+            tracks={document.getElementById('numTracks').value}
+            name={document.getElementById('name').value}
+        />,
+        document.getElementById('root'))
+}
+
 export default function UserForm() {
     return (
         <FadeIn>
@@ -14,16 +23,11 @@ export default function UserForm() {
                 </Form.Group>
                 <Form.Group controlId="name">
                     <Form.Label><h5>Name</h5></Form.Label>
-                    <Form.Control type="text" placeholder="Rick Sanchez" />
+                    <Form.Control type="text" defaultValue="User" />
                 </Form.Group>
                 <button
                     className='btn btn-lg rounded-lg btn-warning btn-block'
-                    onClick={() => ReactDOM.render(
-                        <Main
-                            tracks={document.getElementById('numTracks').value}
-                            name={document.getElementById('name').value}
-                        />, document.getElementById('root'))}
-                >
+                    onClick={() => play()} >
                     Begin!
                  </button>
             </Form>

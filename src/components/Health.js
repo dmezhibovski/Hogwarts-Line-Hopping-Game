@@ -10,9 +10,9 @@ export default class Health extends Component {
     }
     render() {
         return (
-            <h3>
-                <ProgressBar now={this.state.health} label={`${this.state.health}%`} variant='success' />
-            </h3>
+            <div>
+                <ProgressBar now={this.state.health} label={`${this.state.health}%`} variant='success' style={{ height: 30 }} />
+            </div>
         )
     }
 }

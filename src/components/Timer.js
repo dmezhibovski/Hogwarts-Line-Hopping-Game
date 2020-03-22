@@ -4,8 +4,8 @@ export default class Timer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            minutes: 3,
-            seconds: 0,
+            minutes: this.props.minutes,
+            seconds: this.props.seconds
         }
     }
 
@@ -38,10 +38,11 @@ export default class Timer extends Component {
     render() {
         const { minutes, seconds } = this.state
         return (
-            <div>
-                { minutes === 0 && seconds === 0
-                    ? <h3>Busted!</h3>
-                    : <h3>Time Remaining: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h3>
+            <div className='d-inline-flex'>
+                { 
+                    minutes === 0 && seconds === 0
+                        ? <h3 className='font-weight-light'>{this.props.checkTime(minutes, seconds)}</h3>
+                        : <h3 className='font-weight-light'>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h3>
                 }
             </div>
         )

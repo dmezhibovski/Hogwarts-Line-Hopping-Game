@@ -2,15 +2,18 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Fadein from 'react-fade-in'
 import UserForm from './UserForm'
+import Image from 'react-bootstrap/Image'
+import './../style/StartMenu.css'
 // import Main from 'Main'
 
 
 function handleClick(buttonName) {
-    // alert(`${buttonName} clicked`)
     if (buttonName === 'start') {
         // // ReactDOM.render(<Main />, document.getElementById('root'))
         ReactDOM.render(<UserForm />, document.getElementById('choice-box'))
-    } 
+    } else {
+        alert(`${buttonName} clicked`)
+    }
     // else if (buttonName === 'rules') {
     //     // ReactDOM.render(<Rules />, document.getElementById('root'))
     // } else {
@@ -22,6 +25,9 @@ export default function StartMenu() {
     return (
         <div className='StartMenu vh-100 bg-dark d-flex flex-column align-items-center justify-content-center text-center'>
             <Fadein delay="0">
+                <div className='position-relative p-0 mx-0 my-5'>
+                    <Image src={require('./../images/user.png')} className='bobbing' />
+                </div>
                 <h1 className='text-light font-italic font-weight-light'>Hogwarts Line Hopping Game</h1>
                 <div className='container-sm my-3 px-5 py-2'>
                     <Fadein delay='400'>

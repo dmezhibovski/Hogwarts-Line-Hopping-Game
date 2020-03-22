@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +11,42 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.track {
+  padding-top: -50px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .bobbing {
+    animation: bob infinite 2s ease-in-out;
+    position: absolute;
+    /* left: -144px; */
+    left: 144px;
+    bottom: 0;
+  }
+
+  .move {
+    animation: moveLeft 2s ease-in;
+  }
+}
+
+@keyframes bob {
+  0%, 100% {
+      bottom: 0;
+      transform: rotate(6deg);
+  }
+  50% {
+      bottom: 40px;
+      transform: rotate(-4deg);
+  }
+}
+
+@keyframes moveLeft {
+  from {
+    transform: translateX(-500);
+  }
+  to {
+    transform: translateX(-2000px);
+  }
 }

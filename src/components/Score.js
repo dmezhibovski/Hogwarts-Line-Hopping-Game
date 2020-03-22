@@ -11,7 +11,7 @@ export default class Score extends Component {
     render() {
         return (
             <div className='Score'>
-                <h3>Score: {this.state.score}</h3>
+                <h3 className='font-weight-light'>Score: {this.state.score}</h3>
             </div>
         )
     }
