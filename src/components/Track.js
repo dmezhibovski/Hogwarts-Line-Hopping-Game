@@ -3,12 +3,14 @@ import React from 'react'
 import Image from 'react-bootstrap/Image'
 import Timer from './Timer'
 
+//Handles timer end
 function getTime(mins, secs) {
     let train = document.getElementById('train')
     clearClass(train)
     return "Train Coming!"
 }
 
+// Shows train on screen 
 function moveLeft(train) {
     train.classList.remove('invisible')
     train.classList.add('move')

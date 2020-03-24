@@ -6,9 +6,9 @@ export default class Timer extends Component {
         this.state = {
             minutes: this.props.minutes,
             seconds: this.props.seconds
-        }
+        } 
     }
-
+    
     componentDidMount() {
         this.myInterval = setInterval(() => {
             const { seconds, minutes } = this.state
