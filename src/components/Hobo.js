@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'react-bootstrap/Image'
-import Plane from './Plane'
+// import Plane from './Plane'
 import Timer from './Timer'
 
 
