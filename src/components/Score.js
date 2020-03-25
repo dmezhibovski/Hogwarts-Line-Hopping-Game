@@ -7,16 +7,17 @@ export default class Score extends Component {
             score: this.props.value
         }
     }
-
+    
+    //allows for this state to be updated upon parent state changing
     componentWillReceiveProps(nextProps) {
         this.setState({ score: nextProps.value });  
     }
 
     render() {
         return (
-            <div className='Score'>
-                <h3 className='font-weight-light'>Score: {this.state.score}</h3>
-            </div>
+            <span className='Score text-monospace'>
+                {this.state.score}
+            </span>
         )
     }
 }

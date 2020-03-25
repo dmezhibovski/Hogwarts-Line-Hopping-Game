@@ -17,13 +17,14 @@ export default class Health extends Component {
     render() {
         return (
             <div className='Health text-center'>
+                Damage Dealt
                 <ProgressBar 
                     now={this.state.health}
                     label={
                         this.state.health <= 25 || this.state.health > 75
                         ?
                         <h1 className='text-left pl-1 py-0'>
-                            {this.state.health}%
+                            {this.state.health}
                         </h1>
                         :
                         <h1 className='text-left pl-1 py-0 text-dark'>

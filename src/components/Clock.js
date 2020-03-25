@@ -10,6 +10,7 @@ export default class Clock extends Component {
         this.tick = this.tick.bind(this)
     }
 
+    //allows for this state to be updated upon parent state changing
     componentWillReceiveProps(nextProps) {
         this.setState({ nextTrain: nextProps.nextTrain });  
     }
@@ -23,7 +24,8 @@ export default class Clock extends Component {
     }
 
     tick() {
-        if (this.state.time.toLocaleTimeString() == this.state.nextTrain.toLocaleTimeString()) {
+        // if time is that of train departure, handle accordingly
+        if (this.state.time.toLocaleTimeString() === this.state.nextTrain.toLocaleTimeString()) {
             console.log("train incoming")
             this.props.sendTrain()
         }
@@ -34,9 +36,9 @@ export default class Clock extends Component {
 
     render() {
         return (
-            <div>
+            <span className='text-monospace'>
                 {this.state.time.toLocaleTimeString()}
-            </div>
+            </span>
         )
     }
 }

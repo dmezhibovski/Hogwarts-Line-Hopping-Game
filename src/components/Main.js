@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-// import ReactDOM from 'react-dom'
-// import Timer from './Timer'
 import Health from './Health'
 import Score from './Score'
 import Track from './Track'
@@ -9,28 +7,23 @@ import Clock from './Clock'
 export default class Main extends Component {
     constructor(props) {
         super(props)
+        // keep state of game
         this.state = {
             user: this.props.name,
             tracks: this.props.tracks,
             score: 0,
             curTrack: Math.round(this.props.tracks/2),
-            // trainTrack: -1,
-            // nextTrain: -1,
-            health: 100,
-            // minsLeft: 5,
-            // secsLeft: 0,
+            health: 0,
             trainsToCome: this.props.trainsToCome,
             nextTrain: this.props.nextTrain,
-            trainsPassed: []
+            trainsPassed: [],
+            occupied: this.props.occupied
         }
 
+        // bind functions to this component
         this.updateScore = this.updateScore.bind(this)
         this.updateHealth = this.updateHealth.bind(this)
         this.sendTrain = this.sendTrain.bind(this)
-
-        
-        // this.gameOver = this.gameOver.bind(this)
-        // this.sendTrain = this.sendTrain.bind(this)
     }
 
     //arg: int points
@@ -48,19 +41,24 @@ export default class Main extends Component {
     updateHealth(damage) {
         console.log(`Current Health: ${this.state.health}`)
         this.setState(prevState => ({
-            health: prevState.health - damage
+            health: prevState.health + damage
         }))
         console.log(`New Health: ${this.state.health}`)
     }
         
+    // no arg
+    // upon time of train departure send a train
     sendTrain() {
-        //grab current trains list
+        //grab state of current trains list
         let trainList = this.state.trainsToCome
+
         //pop incoming train out
         let incoming = trainList.shift()
-        //destructure to grab necessary info
+        
+        //grab track train is on and time of departure
         var { track, time } = incoming
-        //check if user is on same track
+        
+        //check if user is on the same track as the train
         console.log(`Ur Track: ${this.state.curTrack}\nTrain: ${track}`)
         if (track === this.state.curTrack) {
             console.log('Ouch!')
@@ -69,21 +67,27 @@ export default class Main extends Component {
             console.log('Close one!')
             this.updateScore(100)
         }
-        //push new train onto list
+        
+        //create and add new train to train list to make up for departed one
         trainList.push({
-            track: Math.floor(Math.random() * (this.state.tracks - 1)),
-            time: new Date(new Date().getTime() + 50000)
+            track: Math.floor(Math.random() * (this.state.tracks - 1)) + 1,
+            time: new Date(new Date().getTime() + 50000),
+            timeOnTrack: 5000
         })
-        //next train to come
+        
+        //store next train to come in nextTrain
         let nextTrain = trainList[0]
-        //destructure to grab time
+        
+        //track is not needed, but time is needed to set time of next coming train
         var { track, time } = nextTrain
-        // console.log(`${track} : ${time.toLocaleTimeString()}`)
-        //grab passed trains list
+        
+        //get the list of trains that have departed already
         let passedTrains = this.state.trainsPassed
-        //append incoming train
+        
+        //add the departed train to the list of departed trains
         passedTrains.push(incoming)
 
+        // update state to reflect above changes
         this.setState(prevState => ({
             trainsToCome: trainList,
             nextTrain: time,
@@ -91,30 +95,21 @@ export default class Main extends Component {
         }))
     }
 
-    // //upon end of game timer, cleanup DOM and render game results
-    // gameOver() {
-    //     return "Game over"
-    // }
-    
-    // //when clock hits time of next train to come, handle all events here
-    // sendTrain() {
-    //     return "Train incoming"
-    // }
-
     render() {
         return (
             <div className='Main bg-dark text-light vh-100 p-0 m-0 container-fluid d-flex flex-column flex-nowrap justify-content-between' id='game-area'>
                 {/* user info such as name, score, and current time */}
-                <div className='p-0 m-0'>
-                    {/* User Name */}
+                <div className='p-3 m-0'>
                     <h3 className='font-weight-light'>
+                        {/* User Name */}
                         {this.state.user}
+                        <br />
+                        {/* User Score */}
+                        Score: <Score value={this.state.score} />
                     </h3>
-                    {/* User Score */}
-                    <Score value={this.state.score} />
                     {/* Current Time */}
-                    <div className='text-center container-fluid'>
-                        <h1 className='text-monospace'>
+                    <div className='text-center container-fluid mt-5'>
+                        <h1 className='text-monospace' style={{ fontSize: 150 }}>
                             <Clock nextTrain={this.state.nextTrain} sendTrain={this.sendTrain} />
                         </h1>
                     </div>
@@ -123,21 +118,16 @@ export default class Main extends Component {
                 <div className='p-0 m-0'>
                     {/* Track User is on*/}
                     <Track track={this.state.curTrack} />
-                    <h3 className='text-light font-weight-light' >
-                        Next Train at: 
-                        <div id='next-train' className='d-inline-flex px-3'>
-                            <h3 className='text-monospace'>{this.state.nextTrain.toLocaleTimeString()}</h3>
-                        </div>
+                    {/* Time of Next Train */}
+                    <h3 className='px-3 text-light font-weight-light' >
+                        Next Train at: <span className='text-monospace'>{this.state.nextTrain.toLocaleTimeString()}</span>
                     </h3>
                 </div>
-                {/* Health bar and time left in game? */}
-                <div className='p-0 m-0'>
+                {/* Health bar */}
+                <div className='p-3 m-0'>
                     <div className='container-sm'>
                         <Health className='float-left' value={this.state.health} />
                     </div>
-                    {/* <h3 className='font-weight-light text-nowrap'>
-                        Time Remaing: <Timer minutes={this.state.minsLeft} seconds={this.state.secsLeft} timerEnd={this.gameOver} isTrain={false} />
-                    </h3> */}
                 </div>
             </div>
         )
