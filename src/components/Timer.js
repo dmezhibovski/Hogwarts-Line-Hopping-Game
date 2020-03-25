@@ -6,7 +6,9 @@ export default class Timer extends Component {
         this.state = {
             minutes: this.props.minutes,
             seconds: this.props.seconds
-        } 
+        }
+
+        this.baseState = this.state
     }
     
     componentDidMount() {
@@ -35,14 +37,19 @@ export default class Timer extends Component {
         clearInterval(this.myInterval)
     }
 
+    // reset() {
+    //     this.props.checkTime()
+    //     return this.state.isTrain ? this.setState(this.baseState) : "Game Over!"
+    // }
+
     render() {
         const { minutes, seconds } = this.state
         return (
             <div className='d-inline-flex'>
                 { 
                     minutes === 0 && seconds === 0
-                        ? <h3 className='font-weight-light'>{this.props.checkTime(minutes, seconds)}</h3>
-                        : <h3 className='font-weight-light'>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h3>
+                    ? <h3 className='font-weight-light'>{ this.props.timerEnd() }</h3>
+                    : <h3 className='font-weight-light text-monospace'>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h3>
                 }
             </div>
         )

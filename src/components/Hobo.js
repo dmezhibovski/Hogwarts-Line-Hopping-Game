@@ -14,10 +14,12 @@ function whereIsNextTrain(){
 export default function Hobo() {
     return (
         <div className='row'>
-            <div>
-                <Image src={require('../images/hobo2.png')} onClick={()=>nextTrain(5)} />
+            <div className='col'>
+                <Image src={require('../images/hobo2.png')}
+                 onClick={()=>nextTrain(5)}
+                 className='position-absolute'/>
             </div>
-            <div>
+            <div className='col'>
                 <Image src={require('../images/paper-plane-3.png')}
                  id='plane' className='invisible' 
                  onClick={()=>whereIsNextTrain()}/>

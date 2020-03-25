@@ -4,8 +4,12 @@ export default class Score extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            score: 0
+            score: this.props.value
         }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({ score: nextProps.value });  
     }
 
     render() {
