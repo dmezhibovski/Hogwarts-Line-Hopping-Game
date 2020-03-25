@@ -1,19 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import "bootstrap/dist/css/bootstrap.min.css";
+import StartMenu from "./components/StartMenu";
 
-import Main from './components/Main'
+import Main from "./components/Main";
 
 // ReactDOM.render(<App />, document.getElementById('root'));
-ReactDOM.render(
-    <Main
-        tracks={5}
-        name="User"
-    />,
-    document.getElementById('root'))
+ReactDOM.render(<StartMenu></StartMenu>, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
