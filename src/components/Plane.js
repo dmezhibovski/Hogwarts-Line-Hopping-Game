@@ -1,6 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-function Plane(){
-    return;
+export default function Plane() {
+    return (
+        <div>
+            
+        </div>
+    )
 }
-export default Plane;

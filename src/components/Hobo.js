@@ -1,7 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-function Hobo (){
-    return;
+export default function Hobo() {
+    return (
+        <div>
+            
+        </div>
+    )
 }
-
-export default Hobo;

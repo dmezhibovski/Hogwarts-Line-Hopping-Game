@@ -1,13 +1,13 @@
-import React from 'react';
-import StartMenu from 'components'
+import React from 'react'
 import './style/App.css';
+import StartMenu from './components/StartMenu'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <StartMenu></StartMenu>
+    <div className='App'>
+      {/* Render The Start Menu */}
+      <StartMenu />
     </div>
-  );
+  )
 }
 
-export default App;

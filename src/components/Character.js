@@ -1,6 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-function Character(){
-    return;
+export default function Character() {
+    return (
+        <div>
+            
+        </div>
+    )
 }
-export default Character;
