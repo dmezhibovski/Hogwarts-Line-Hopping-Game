@@ -97,11 +97,6 @@ export default class Main extends Component {
   //     return "Game over"
   // }
 
-  // //when clock hits time of next train to come, handle all events here
-  // sendTrain() {
-  //     return "Train incoming"
-  // }
-
   render() {
     return (
       <div
@@ -114,7 +109,6 @@ export default class Main extends Component {
           <h3 className="font-weight-light">{this.state.user}</h3>
           {/* User Score */}
           <Score value={this.state.score} />
-          <Plane message="secret Message" />
           {/* Current Time */}
           <div className="text-center container-fluid">
             <h1 className="text-monospace">
@@ -124,7 +118,7 @@ export default class Main extends Component {
               />
             </h1>
           </div>
-          <Hobo />
+          <Hobo nextTrain="" trainTime="" numTracks={this.props.tracks} />
         </div>
         {/* The playing area, has the track, user avatar, track user is on, time of next train coming */}
         <div className="p-0 m-0">

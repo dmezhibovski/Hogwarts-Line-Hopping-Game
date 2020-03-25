@@ -1,29 +1,43 @@
-import React from 'react'
+import React, {Component} from 'react'
 import Image from 'react-bootstrap/Image'
 // import Plane from './Plane'
-import Timer from './Timer'
+import Clock from './Clock'
 
 
-function nextTrain(tracks){
-    return Math.floor(Math.random()*tracks)
-}
-function whereIsNextTrain(){
-    alert("Next Train is going to be on track " + nextTrain(5))
-}
+export default class Hobo extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            tracks : this.props.numTracks,
+            nextTrain : this.props.nextTrain,
+            nextTrainTime : this.props.nextTrain,
+        }
+        this.nextTrain = this.nextTrain.bind(this)
+        this.whereIsNextTrain = this.whereIsNextTrain.bind(this)
+    }
+    
+    nextTrain(tracks){
+        return Math.floor(Math.random()*tracks)
+    }
+    whereIsNextTrain(){
+        alert("Next Train is going to be on track " + this.nextTrain(this.state.tracks))
+    } 
 
-export default function Hobo() {
-    return (
-        <div className='row'>
-            <div className='col'>
-                <Image src={require('../images/hobo2.png')}
-                 onClick={()=>nextTrain(5)}
-                 className='position-absolute'/>
+    render(){
+        return (
+            <div >
+                <div >
+                    <Image src={require('../images/hobo2.png')}
+                    onClick={()=>this.whereIsNextTrain()}
+                    // className='position-absolute'
+                />
+                </div>
+                <div >
+                    <Image src={require('../images/paper-plane-3.png')}
+                    id='plane' className='invisible' 
+                    onClick={()=>this.whereIsNextTrain()}/>
+                </div>
             </div>
-            <div className='col'>
-                <Image src={require('../images/paper-plane-3.png')}
-                 id='plane' className='invisible' 
-                 onClick={()=>whereIsNextTrain()}/>
-            </div>
-        </div>
-    )
+        )
+    }
 }
