@@ -119,7 +119,7 @@ export default class Main extends Component {
                             <Clock nextTrain={this.state.nextTrain} sendTrain={this.sendTrain} />
                         </h1>
                     </div>
-                    <Hobo nextTrain='' trainTime='' numTracks={this.props.tracks}/>
+                    <Hobo nextTrain='' trainTime={this.state.nextTrain.toLocaleTimeString()} numTracks={this.props.tracks}/>
                 </div>
                 {/* The playing area, has the track, user avatar, track user is on, time of next train coming */}
                 <div className='p-0 m-0'>
