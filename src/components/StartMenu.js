@@ -35,7 +35,7 @@ export default function StartMenu() {
                             className='btn btn-lg btn-light btn-block text-dark font-weight-bold px-5 py-2 my-1'
                             onClick={() => handleClick('start')}
                         >
-                            Start
+                            Start 
                         </button>
                         <button
                             className='btn btn-lg btn-light btn-block text-dark font-weight-bold px-5 py-2 my-1'

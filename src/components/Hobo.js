@@ -21,11 +21,36 @@ export default class Hobo extends Component {
             nextTrainTime: nextProps.trainTime })
     }
 
+    //Updates self state on either accurate or non-accurate train info
     whereIsNextTrain(){
-        let mess="Next Train is going to be on track " + this.state.nextTrain + " at " +this.state.nextTrainTime
-        this.setState({message :mess })
+        var mess
+        if(this.randomNum(10)<9){
+            mess="Next Train is going to be on track " + this.state.nextTrain + " at " +this.state.nextTrainTime
+        }
+        else{
+            mess=this.generateBadInfo() + " FALSE"
+        }
+
+        this.setState({message : mess })
         alert(mess)
-    } 
+    }
+    
+    randomNum(range){
+        return Math.floor(Math.random()*range)
+    }
+    //Generates lie about train location  
+    generateBadInfo(){
+        let currentTime = new Date()
+        // if(this.randomNum(10)<9){
+        //     falseTrack=this.state.nextTrain
+        //     falseTime=
+        // }
+        // else{
+            var falseTrack=this.randomNum(this.state.tracks)+1
+            var falseTime= new Date(this.randomNum(20000)+currentTime.getTime())
+        // }
+        return "Next Train is going to be on track " + falseTrack + " at " + falseTime.toLocaleTimeString()
+    }
 
     render(){
         return (

@@ -37,7 +37,6 @@ export default class Track extends Component {
     //     })
     //     this.resetTimer()
     // }
-    
     // sleep(ms) {
     //     return new Promise(resolve => setTimeout(resolve, ms))
     // }
