@@ -117,7 +117,12 @@ export default class Main extends Component {
                     </div>
                 </div>
                 {/* The playing area, has the track, user avatar, track user is on, time of next train coming */}
-                <Algorithm track = {this.state.curTrack} nextTrain='' trainTime={this.state.nextTrain.toLocaleTimeString()} numTracks={this.props.tracks}/>
+                <Algorithm 
+                  track = {this.state.curTrack}
+                  nextTrain=''
+                  trainTime={this.state.nextTrain.toLocaleTimeString()}
+                  numTracks={this.props.tracks}
+                />
                 <div className='p-0 m-0'>
                     {/* Track User is on*/}
                     <h3 className='text-light font-weight-light' >
