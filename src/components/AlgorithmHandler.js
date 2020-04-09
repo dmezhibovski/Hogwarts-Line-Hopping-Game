@@ -112,6 +112,7 @@ export default class Main extends Component {
                 <Collision
                     nextTrain={this.state.nextTrain}
                     nextTrainTime={this.state.nextTrainTime}
+                    tracks={this.state.tracks}
                 />
                 <SmartAlg
                     nextTrain={this.state.nextTrain}
