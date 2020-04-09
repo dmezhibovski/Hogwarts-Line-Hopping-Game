@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Image from "react-bootstrap/Image";
 import Plane from "./Plane";
-import Clock from "./Clock";
+import Clock from "./clock";
 
 export default class Hobo extends Component {
   constructor(props) {
@@ -10,14 +10,14 @@ export default class Hobo extends Component {
       tracks: this.props.numTracks,
       nextTrain: this.props.nextTrain,
       nextTrainTime: this.props.trainTime,
-      message: "Test message(you can delete this Daniel)"
+      message: "Test message(you can delete this Daniel)",
     };
     this.whereIsNextTrain = this.whereIsNextTrain.bind(this);
   }
   componentWillReceiveProps(nextProps) {
     this.setState({
       nextTrain: nextProps.nextTrain,
-      nextTrainTime: nextProps.trainTime
+      nextTrainTime: nextProps.trainTime,
     });
   }
 
