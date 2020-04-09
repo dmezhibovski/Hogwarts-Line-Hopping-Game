@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SmartAlg from "./SmartAlg";
 import Collision from "./Collision";
+import {basicAlgo,SmartAlgo} from 'algorithmstucture'
 
 export default class Main extends Component {
     constructor(props) {
@@ -104,9 +105,15 @@ export default class Main extends Component {
             falseTime.toLocaleTimeString()
         );
     }
+    componentDidMount(){
+        this.state.algorithms.push(new basicAlgo(this.props.curTrack, this.props.numTracks)) 
+        this.state.algorithms.push(new SmartAlgo(this.props.curTrack, this.props.numTracks)) 
 
+    }
  
     render(){
+     
+
         return(
             <div style={{display: "none"}}>
                 <Collision

@@ -1,16 +1,46 @@
-class basicAlgo {
+class Algo{
   constructor(startTrack, maxTrack) {
     this.track = startTrack;
     this.maxTrack = maxTrack;
     this.planeInfoLog = []; //an array of all the planes you recieved
+    this.curTrack = this.track
+  }
+   //info is track that you got hit on
+   receiveHit(info) {}
+
+   //info should be in array [track number, time]
+   receivePlane(info) {}
+ 
+   //info is track you teleported to
+   receiveMove(info) {}
+}
+
+class basicAlgo extends Algo{
+  constructor(startTrack, maxTrack) {
+    super(startTrack,maxTrack)
   }
 
-  //info is track that you got hit on
-  receiveHit(info) {}
+  upTrack (){
+      if(this.curTrack!=this.maxTrack){
+          this.curTrack++
+      }
+  }
 
-  //info should be in array [track number, time]
-  receivePlane(info) {}
+  downTrack (){
+      if(this.curTrack!=1){
+          this.curTrack--
+      }
+  }
 
-  //info is track you teleported to
-  receiveMove(info) {}
+  jump(){
+
+
+  }
+
+}
+
+class SmartAlgo{
+  constructor(startTrack, maxTrack) {
+    super(startTrack,maxTrack)
+  }
 }

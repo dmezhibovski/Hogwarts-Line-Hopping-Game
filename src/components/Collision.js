@@ -6,6 +6,7 @@ export default class Collision extends Component{
         this.state={
             curTrack:this.props.curTrack,
             messages:[],
+            tracks:this.props.tracks
         }
     }
     componentWillReceiveProps(nextProps){
