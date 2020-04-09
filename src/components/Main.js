@@ -7,7 +7,6 @@ import Track from "./Track";
 import Clock from "./Clock";
 import Hobo from "./Hobo";
 import Plane from "./Plane";
-import Algorithm from "./Algorithm";
 import AlgorithmHandler from "./AlgorithmHandler";
 
 export default class Main extends Component {
@@ -27,7 +26,6 @@ export default class Main extends Component {
       nextTrain: this.props.nextTrain,
       trainsPassed: [],
       collision:false,
-      algoHandler: new AlgorithmHandler(),
     };
 
     this.updateScore = this.updateScore.bind(this);
@@ -125,6 +123,10 @@ export default class Main extends Component {
                 <AlgorithmHandler
                   collision={this.state.collision}
                   curTrack={this.state.curTrack}
+                  tracks={this.state.tracks}
+                  nextTrain=''
+                  trainTime={this.state.nextTrain.toLocaleTimeString()}
+                  numTracks={this.props.tracks}
                 />
                 {/* user info such as name, score, and current time */}
                 <div className='p-0 m-0'>

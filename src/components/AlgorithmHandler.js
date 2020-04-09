@@ -11,7 +11,8 @@ export default class Main extends Component {
             tracks: this.props.numTracks,
             nextTrain: this.props.nextTrain,
             nextTrainTime: this.props.trainTime,
-            message: "Test message(you can delete this Daniel)",
+            collision:this.props.collision,
+            curTrack:this.props.curTrack,
         }
         this.whereIsNextTrain = this.whereIsNextTrain.bind(this);
     }
@@ -61,12 +62,30 @@ export default class Main extends Component {
         );
     }
 
+    upTrack(){
+        if(curTrack!=tracks){
+            curTrack++
+        }
+    }
+    
+    downTrack(){
+        if(curTrack!=1){
+            curTrack--
+        }
+    }
     render(){
-        let algo;
-        algo=null;
         return(
             <div style={{display: "none"}}>
-                {algo}
+                <Collision
+                    nextTrain={this.state.nextTrain}
+                    nextTrainTime={this.state.nextTrainTime}
+                    moveUp={this.upTrack}
+                    moveDown={this.downTrack}
+                />
+                <SmartAlg
+                    nextTrain={this.state.nextTrain}
+                    nextTrainTime={this.state.nextTrainTime}
+                />
             </div>
         )
     }
