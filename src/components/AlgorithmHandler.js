@@ -8,15 +8,31 @@ export default class Main extends Component {
     this.state = {
       algorithms: [], //Will contain lists of [algo ref,trackOn,nextJump,time of jump]
       nextTimeJump: null,
-      tracks: this.props.numTracks,
+      //tracks: this.props.numTracks,
       nextTrain: this.props.nextTrain,
       nextTrainTime: this.props.trainTime,
       message: "Test message(you can delete this Daniel)",
     };
-    //this.sendPlaneInfoToAlgo = this.sendPlaneInfoToAlgo.bind(this);
+    this.sendPlaneInfoToAlgo = this.sendPlaneInfoToAlgo.bind(this);
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
   } //end of constructor
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.trainTime == this.state.trainTime) {
+      return; //This is because the train prop was not changed therefore no updating is needed
+    }
+
+    //check impacts
+    this.state.algorithms.forEach((element) => {
+      var trackNumOn = element[1];
+      if (trackNumOn == this.state.nextTrain) {
+        console.log("CC - you got hit");
+        element[0].receiveHit(trackNumOn);
+      }
+    });
+    //send planes
+    this.sendPlaneInfoToAlgo([nextProps.nextTrain, nextProps.trainTime]);
+    //update
     this.setState({
       nextTrain: nextProps.nextTrain,
       nextTrainTime: nextProps.trainTime,
@@ -25,14 +41,15 @@ export default class Main extends Component {
 
   //info should be in array [track number, time]
   sendPlaneInfoToAlgo(info) {
-    this.state.algorithms.array.forEach((element) => {
+    //the zero index of the array is the algo references
+    this.state.algorithms.forEach((element) => {
       if (this.randomNum(10) < 9) {
         element[0].receivePlane(info);
       } else {
         element[0].receivePlane(this.generateBadInfo(info));
       }
     });
-    console.log("Send planes to algos");
+    console.log("Sent planes to algos");
   }
 
   randomNum(range) {
@@ -45,20 +62,6 @@ export default class Main extends Component {
     var falseTime = new Date(this.randomNum(20000) + currentTime.getTime());
     return [falseTrack, falseTime];
   }
-
-  /*
-    constructor(props) {
-        super(props);
-        this.state = {
-            algorithms : [],//Will contain lists of [algo ref,trackOn,nextJump,time of jump]
-            nextTimeJump : null,
-            tracks: this.props.numTracks,
-            nextTrain: this.props.nextTrain,
-            nextTrainTime: this.props.trainTime,
-            message: "Test message(you can delete this Daniel)",
-        }
-        this.whereIsNextTrain = this.whereIsNextTrain.bind(this);
-    }*/
 
   //Updates self state on either accurate or non-accurate train info
   whereIsNextTrain() {
@@ -75,20 +78,6 @@ export default class Main extends Component {
 
     this.setState({ message: mess });
     alert(mess);
-  }
-
-  //Generates lie about train location
-  generateBadInfo() {
-    let currentTime = new Date();
-    var falseTrack = this.randomNum(this.state.tracks) + 1;
-    var falseTime = new Date(this.randomNum(20000) + currentTime.getTime());
-    // }
-    return (
-      "Next Train is going to be on track " +
-      falseTrack +
-      " at " +
-      falseTime.toLocaleTimeString()
-    );
   }
 
   render() {
