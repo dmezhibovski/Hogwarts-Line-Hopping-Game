@@ -103,12 +103,12 @@ export default class Main extends Component {
       passInfo.push(ele.time);
       this.state.algoHandler.snedPlaneInfoToAlgo(passInfo);
     };
-    this.state.trainsToCome.foreach(loopPlaneLamdaFunction);
+    this.state.trainsToCome.array.forEach(loopPlaneLamdaFunction);
     this.state.algoHandler.snedPlaneInfoToAlgo([
       this.state.nextTrain.track,
       this.state.nextTrain.time,
     ]);
-    this.state.trainsToCome.foreacth(loopPlaneLamdaFunction);
+    this.state.trainsToCome.array.forEach(loopPlaneLamdaFunction);
   }
 
   // //upon end of game timer, cleanup DOM and render game results
