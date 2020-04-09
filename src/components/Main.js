@@ -25,6 +25,7 @@ export default class Main extends Component {
       trainsToCome: this.props.trainsToCome,
       nextTrain: this.props.nextTrain,
       trainsPassed: [],
+      algoHandler: new AlgorithmHandler(),
     };
 
     this.updateScore = this.updateScore.bind(this);
@@ -93,51 +94,73 @@ export default class Main extends Component {
     }));
   }
 
+  //plane messages
+  sendPlane() {
+    var loopPlaneLamdaFunction = function (ele) {
+      passInfo = [];
+      passInfo.push(ele.track);
+      passInfo.push(ele.time);
+      this.state.algoHandler.snedPlaneInfoToAlgo(passInfo);
+    };
+    this.state.trainsToCome.foreach(loopPlaneLamdaFunction);
+    this.state.algoHandler.snedPlaneInfoToAlgo([
+      this.state.nextTrain.track,
+      this.state.nextTrain.time,
+    ]);
+    this.state.trainsToCome.foreacth(loopPlaneLamdaFunction);
+  }
+
   // //upon end of game timer, cleanup DOM and render game results
   // gameOver() {
   //     return "Game over"
   // }
 
-    render() {
-        return (
-            <div className='Main bg-dark text-light vh-100 p-0 m-0 container-fluid d-flex flex-column flex-nowrap justify-content-between' id='game-area'>
-                {/* user info such as name, score, and current time */}
-                <div className='p-0 m-0'>
-                    {/* User Name */}
-                    <h3 className='font-weight-light'>
-                        {this.state.user}
-                    </h3>
-                    {/* User Score */}
-                    <Score value={this.state.score} />
-                    {/* Current Time */}
-                    <div className='text-center container-fluid'>
-                        <h1 className='text-monospace'>
-                            <Clock nextTrain={this.state.nextTrain} sendTrain={this.sendTrain} />
-                        </h1>
-                    </div>
-                </div>
-                {/* The playing area, has the track, user avatar, track user is on, time of next train coming */}
-                <Algorithm 
-                  track = {this.state.curTrack}
-                  nextTrain=''
-                  trainTime={this.state.nextTrain.toLocaleTimeString()}
-                  numTracks={this.props.tracks}
-                />
-                <div className='p-0 m-0'>
-                    {/* Track User is on*/}
-                    <h3 className='text-light font-weight-light' >
-                        Next Train at: 
-                        <div id='next-train' className='d-inline-flex px-3'>
-                            <h3 className='text-monospace'>{this.state.nextTrain.toLocaleTimeString()}</h3>
-                        </div>
-                    </h3>
-                </div>
-                {/* Health bar and time left in game? */}
-                <div className='p-0 m-0'>
-                    <div className='container-sm'>
-                        <Health className='float-left' value={this.state.health} />
-                    </div>
-                    {/* <h3 className='font-weight-light text-nowrap'>
+  render() {
+    return (
+      <div
+        className="Main bg-dark text-light vh-100 p-0 m-0 container-fluid d-flex flex-column flex-nowrap justify-content-between"
+        id="game-area"
+      >
+        {/* user info such as name, score, and current time */}
+        <div className="p-0 m-0">
+          {/* User Name */}
+          <h3 className="font-weight-light">{this.state.user}</h3>
+          {/* User Score */}
+          <Score value={this.state.score} />
+          {/* Current Time */}
+          <div className="text-center container-fluid">
+            <h1 className="text-monospace">
+              <Clock
+                nextTrain={this.state.nextTrain}
+                sendTrain={this.sendTrain}
+              />
+            </h1>
+          </div>
+        </div>
+        {/* The playing area, has the track, user avatar, track user is on, time of next train coming */}
+        <Algorithm
+          track={this.state.curTrack}
+          nextTrain=""
+          trainTime={this.state.nextTrain.toLocaleTimeString()}
+          numTracks={this.props.tracks}
+        />
+        <div className="p-0 m-0">
+          {/* Track User is on*/}
+          <h3 className="text-light font-weight-light">
+            Next Train at:
+            <div id="next-train" className="d-inline-flex px-3">
+              <h3 className="text-monospace">
+                {this.state.nextTrain.toLocaleTimeString()}
+              </h3>
+            </div>
+          </h3>
+        </div>
+        {/* Health bar and time left in game? */}
+        <div className="p-0 m-0">
+          <div className="container-sm">
+            <Health className="float-left" value={this.state.health} />
+          </div>
+          {/* <h3 className='font-weight-light text-nowrap'>
                         Time Remaing: <Timer minutes={this.state.minsLeft} seconds={this.state.secsLeft} timerEnd={this.gameOver} isTrain={false} />
                     </h3> */}
         </div>
