@@ -7,7 +7,8 @@ import Track from "./Track";
 import Clock from "./Clock";
 import Hobo from "./Hobo";
 import Plane from "./Plane";
-import AlgorithmHandler from "./AlgorithmHandler"
+import Algorithm from "./Algorithm";
+import AlgorithmHandler from "./AlgorithmHandler";
 
 export default class Main extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ export default class Main extends Component {
       nextTrain: this.props.nextTrain,
       trainsPassed: [],
       collision:false,
+      algoHandler: new AlgorithmHandler(),
     };
 
     this.updateScore = this.updateScore.bind(this);
@@ -94,6 +96,22 @@ export default class Main extends Component {
       nextTrain: time,
       trainsPassed: passedTrains
     }));
+  }
+
+  //plane messages
+  sendPlane() {
+    var loopPlaneLamdaFunction = function (ele) {
+      var passInfo = [];
+      passInfo.push(ele.track);
+      passInfo.push(ele.time);
+      this.state.algoHandler.snedPlaneInfoToAlgo(passInfo);
+    };
+    this.state.trainsToCome.foreach(loopPlaneLamdaFunction);
+    this.state.algoHandler.snedPlaneInfoToAlgo([
+      this.state.nextTrain.track,
+      this.state.nextTrain.time,
+    ]);
+    this.state.trainsToCome.foreacth(loopPlaneLamdaFunction);
   }
 
   // //upon end of game timer, cleanup DOM and render game results

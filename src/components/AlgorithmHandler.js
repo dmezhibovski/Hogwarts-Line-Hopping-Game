@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import SmartAlg from "./SmartAlg";
 import Collision from "./Collision";
 
-
 export default class Main extends Component {
     constructor(props) {
         super(props);
