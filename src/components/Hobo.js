@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Image from "react-bootstrap/Image";
 import Plane from "./Plane";
-import Clock from "./clock";
+import Clock from "./Clock";
 
 export default class Hobo extends Component {
   constructor(props) {
