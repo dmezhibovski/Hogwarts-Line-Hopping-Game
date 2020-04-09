@@ -3,19 +3,22 @@ import SmartAlg from "./SmartAlg";
 import Collision from "./Collision";
 
 export default class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      algorithms: [], //Will contain lists of [algo ref,trackOn,nextJump,time of jump]
-      nextTimeJump: null,
-      //tracks: this.props.numTracks,
-      nextTrain: this.props.nextTrain,
-      nextTrainTime: this.props.trainTime,
-      message: "Test message(you can delete this Daniel)",
-    };
-    this.sendPlaneInfoToAlgo = this.sendPlaneInfoToAlgo.bind(this);
-    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
-  } //end of constructor
+    constructor(props) {
+        super(props);
+        this.state = {
+            algorithms : [],//Will contain lists of [algo ref,trackOn,nextJump,time of jump]
+            nextTimeJump : null,
+            tracks: this.props.numTracks,
+            nextTrain: this.props.nextTrain,
+            nextTrainTime: this.props.trainTime,
+            collision:this.props.collision,
+            curTrack:this.props.curTrack,
+        }
+        this.whereIsNextTrain = this.whereIsNextTrain.bind(this);
+        this.sendPlaneInfoToAlgo = this.sendPlaneInfoToAlgo.bind(this);
+        this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+  
+    }   //end of constructor
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.trainTime == this.state.trainTime) {
@@ -77,12 +80,45 @@ export default class Main extends Component {
     }
 
     this.setState({ message: mess });
-    alert(mess);
-  }
+        alert(mess);
+    }
 
-  render() {
-    let algo;
-    algo = null;
-    return <div style={{ display: "none" }}>{algo}</div>;
-  }
+    randomNum(range) {
+        return Math.floor(Math.random() * range);
+    }
+    //Generates lie about train location
+    generateBadInfo() {
+        let currentTime = new Date();
+        // if(this.randomNum(10)<9){
+        //     falseTrack=this.state.nextTrain
+        //     falseTime=
+        // }
+        // else{
+        var falseTrack = this.randomNum(this.state.tracks) + 1;
+        var falseTime = new Date(this.randomNum(20000) + currentTime.getTime());
+        // }
+        return (
+            "Next Train is going to be on track " +
+            falseTrack +
+            " at " +
+            falseTime.toLocaleTimeString()
+        );
+    }
+
+ 
+    render(){
+        return(
+            <div style={{display: "none"}}>
+                <Collision
+                    nextTrain={this.state.nextTrain}
+                    nextTrainTime={this.state.nextTrainTime}
+                />
+                <SmartAlg
+                    nextTrain={this.state.nextTrain}
+                    nextTrainTime={this.state.nextTrainTime}
+                />
+            </div>
+        )
+    }
+
 }
