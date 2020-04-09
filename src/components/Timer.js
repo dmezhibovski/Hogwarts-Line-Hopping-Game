@@ -1,56 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react'
 
-class Timer extends React.Component {
-    constructor(props){
-      super(props)
-      this.state = {
-        time: 0,
-        isOn: false,
-        start: 0
-      }
-      this.startTimer = this.startTimer.bind(this)
-      this.stopTimer = this.stopTimer.bind(this)
-      this.resetTimer = this.resetTimer.bind(this)
+export default class Timer extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            minutes: this.props.minutes,
+            seconds: this.props.seconds
+        }
+
+        this.baseState = this.state
     }
-    startTimer() {
-      this.setState({
-        isOn: true,
-        time: this.state.time,
-        start: Date.now() - this.state.time
-      })
-      this.timer = setInterval(() => this.setState({
-        time: Date.now() - this.state.start
-      }), 1);
+    
+    componentDidMount() {
+        this.myInterval = setInterval(() => {
+            const { seconds, minutes } = this.state
+
+            if (seconds > 0) {
+                this.setState(({ seconds }) => ({
+                    seconds: seconds - 1
+                }))
+            }
+            if (seconds === 0) {
+                if (minutes === 0) {
+                    clearInterval(this.myInterval)
+                } else {
+                    this.setState(({ minutes }) => ({
+                        minutes: minutes - 1,
+                        seconds: 59
+                    }))
+                }
+            } 
+        }, 1000)
     }
-    stopTimer() {
-      this.setState({isOn: false})
-      clearInterval(this.timer)
+
+    componentWillUnmount() {
+        clearInterval(this.myInterval)
     }
-    resetTimer() {
-      this.setState({time: 0, isOn: false})
-    }
+
+    // reset() {
+    //     this.props.checkTime()
+    //     return this.state.isTrain ? this.setState(this.baseState) : "Game Over!"
+    // }
+
     render() {
-      let start = (this.state.time == 0) ?
-        <button onClick={this.startTimer}>start</button> :
-        null
-      let stop = (this.state.time == 0 || !this.state.isOn) ?
-        null :
-        <button onClick={this.stopTimer}>stop</button>
-      let resume = (this.state.time == 0 || this.state.isOn) ?
-        null :
-        <button onClick={this.startTimer}>resume</button>
-      let reset = (this.state.time == 0 || this.state.isOn) ?
-        null :
-        <button onClick={this.resetTimer}>reset</button>
-      return(
-        <div>
-          <h3>timer: {this.state.time}</h3>
-          {start}
-          {resume}
-          {stop}
-          {reset}
-        </div>
-      )
+        const { minutes, seconds } = this.state
+        return (
+            <div className='d-inline-flex'>
+                { 
+                    minutes === 0 && seconds === 0
+                    ? <h3 className='font-weight-light'>{ this.props.timerEnd() }</h3>
+                    : <h3 className='font-weight-light text-monospace'>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h3>
+                }
+            </div>
+        )
     }
 }
-export default Timer;

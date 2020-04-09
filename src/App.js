@@ -1,19 +1,12 @@
-import React from 'react';
-import StartMenu from './components/StartMenu.js'
-import MainGame from './components/MainGame.js'
-import Clock from './components/clock.js'
-import Timer from './components/Timer.js'
+import React from 'react'
+import './style/App.css';
+import StartMenu from './components/StartMenu'
 
-import './style/App.css';  
-
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <MainGame/>
-      <Clock/>
-      <Timer/>
+    <div className='App'>
+      <StartMenu />
     </div>
-  );
+  )
 }
 
-export default App;
