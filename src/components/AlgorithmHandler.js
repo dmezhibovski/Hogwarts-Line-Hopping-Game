@@ -105,25 +105,13 @@ export default class Main extends Component {
         );
     }
 
-    upTrack(){
-        if(curTrack!=tracks){
-            curTrack++
-        }
-    }
-    
-    downTrack(){
-        if(curTrack!=1){
-            curTrack--
-        }
-    }
+ 
     render(){
         return(
             <div style={{display: "none"}}>
                 <Collision
                     nextTrain={this.state.nextTrain}
                     nextTrainTime={this.state.nextTrainTime}
-                    moveUp={this.upTrack}
-                    moveDown={this.downTrack}
                 />
                 <SmartAlg
                     nextTrain={this.state.nextTrain}
@@ -133,11 +121,4 @@ export default class Main extends Component {
         )
     }
 
-
-
-  render() {
-    let algo;
-    algo = null;
-    return <div style={{ display: "none" }}>{algo}</div>;
-  }
 }
