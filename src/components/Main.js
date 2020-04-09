@@ -25,7 +25,7 @@ export default class Main extends Component {
       trainsToCome: this.props.trainsToCome,
       nextTrain: this.props.nextTrain,
       trainsPassed: [],
-      collision:false,
+      collision: false,
     };
 
     this.updateScore = this.updateScore.bind(this);
@@ -40,8 +40,8 @@ export default class Main extends Component {
   //increase score by points
   updateScore(points) {
     console.log(`Current Score: ${this.state.score}`);
-    this.setState(prevState => ({
-      score: prevState.score + points
+    this.setState((prevState) => ({
+      score: prevState.score + points,
     }));
     console.log(`New Score: ${this.state.score}`);
   }
@@ -50,8 +50,8 @@ export default class Main extends Component {
   //decrease health by damage
   updateHealth(damage) {
     console.log(`Current Health: ${this.state.health}`);
-    this.setState(prevState => ({
-      health: prevState.health - damage
+    this.setState((prevState) => ({
+      health: prevState.health - damage,
     }));
     console.log(`New Health: ${this.state.health}`);
   }
@@ -68,16 +68,16 @@ export default class Main extends Component {
     if (track === this.state.curTrack) {
       console.log("Ouch!");
       this.updateHealth(10);
-      this.setState({collision:true})
+      this.setState({ collision: true });
     } else {
       console.log("Close one!");
       this.updateScore(100);
-      this.setState({collision:false})
+      this.setState({ collision: false });
     }
     //push new train onto list
     trainList.push({
       track: Math.floor(Math.random() * (this.state.tracks - 1)),
-      time: new Date(new Date().getTime() + 50000)
+      time: new Date(new Date().getTime() + 50000),
     });
     //next train to come
     let nextTrain = trainList[0];
@@ -89,14 +89,15 @@ export default class Main extends Component {
     //append incoming train
     passedTrains.push(incoming);
 
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       trainsToCome: trainList,
       nextTrain: time,
-      trainsPassed: passedTrains
+      trainsPassed: passedTrains,
     }));
   }
 
   //plane messages
+  /*
   sendPlane() {
     var loopPlaneLamdaFunction = function (ele) {
       var passInfo = [];
@@ -104,13 +105,13 @@ export default class Main extends Component {
       passInfo.push(ele.time);
       this.state.algoHandler.snedPlaneInfoToAlgo(passInfo);
     };
-    this.state.trainsToCome.foreach(loopPlaneLamdaFunction);
+    this.state.trainsToCome.array.forEach(loopPlaneLamdaFunction);
     this.state.algoHandler.snedPlaneInfoToAlgo([
       this.state.nextTrain.track,
       this.state.nextTrain.time,
     ]);
-    this.state.trainsToCome.foreacth(loopPlaneLamdaFunction);
-  }
+    this.state.trainsToCome.array.forEach(loopPlaneLamdaFunction);
+  }*/
 
   // //upon end of game timer, cleanup DOM and render game results
   // gameOver() {
