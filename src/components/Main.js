@@ -8,6 +8,7 @@ import Clock from "./clock";
 import Hobo from "./Hobo";
 import Plane from "./Plane";
 import Algorithm from "./Algorithm";
+import AlgorithmHandler from "./AlgorithmHandler";
 
 export default class Main extends Component {
   constructor(props) {
@@ -97,7 +98,7 @@ export default class Main extends Component {
   //plane messages
   sendPlane() {
     var loopPlaneLamdaFunction = function (ele) {
-      passInfo = [];
+      var passInfo = [];
       passInfo.push(ele.track);
       passInfo.push(ele.time);
       this.state.algoHandler.snedPlaneInfoToAlgo(passInfo);
