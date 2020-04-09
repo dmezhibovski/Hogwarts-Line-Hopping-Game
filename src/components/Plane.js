@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Image from "react-bootstrap/Image";
 import { Popover, OverlayTrigger, Button, Tooltip } from "react-bootstrap";
 
-export default class Track extends Component {
+export default class Plane extends Component {
   constructor(props) {
     super(props);
     this.state = {

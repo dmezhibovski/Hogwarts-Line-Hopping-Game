@@ -7,6 +7,7 @@ import Track from "./Track";
 import Clock from "./Clock";
 import Hobo from "./Hobo";
 import Plane from "./Plane";
+import Algorithm from "./Algorithm";
 
 export default class Main extends Component {
   constructor(props) {
@@ -114,12 +115,11 @@ export default class Main extends Component {
                             <Clock nextTrain={this.state.nextTrain} sendTrain={this.sendTrain} />
                         </h1>
                     </div>
-                    <Hobo nextTrain='' trainTime={this.state.nextTrain.toLocaleTimeString()} numTracks={this.props.tracks}/>
                 </div>
                 {/* The playing area, has the track, user avatar, track user is on, time of next train coming */}
+                <Algorithm track = {this.state.curTrack} nextTrain='' trainTime={this.state.nextTrain.toLocaleTimeString()} numTracks={this.props.tracks}/>
                 <div className='p-0 m-0'>
                     {/* Track User is on*/}
-                    <Track track={this.state.curTrack} />
                     <h3 className='text-light font-weight-light' >
                         Next Train at: 
                         <div id='next-train' className='d-inline-flex px-3'>
