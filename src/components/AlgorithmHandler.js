@@ -19,7 +19,6 @@ export default class Main extends Component {
 
     //add in the algorithms
     this.state.algorithms.push(new TestAlgo(1, 4));
-    // this.state.algorithms.push([new BasicAlgo(1, 4), 1, null, null]);
   } //end of constructor
 
   componentDidMount() {

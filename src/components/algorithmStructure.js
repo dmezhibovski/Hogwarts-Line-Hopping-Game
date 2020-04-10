@@ -35,7 +35,19 @@ export class BasicAlgo extends Algo {
   }
 
   jump() {
-    for (var i = 0; i < this.planeInfoLog.length; i++) {}
+    let bestPick=[0,0]
+    let nextTrack,nextTime,jumpUp
+    this.planeInfoLog.forEach((plane) =>{
+      nextTrack=plane[0]
+      nextTime=plane[1]
+      if(nextTrack==this.curTrack+1 || nextTrack==this.curTrack-1){
+        if(nextTime>bestPick[1] && nextTime>(new Date().getTime)){
+          bestPick=[nextTrack,nextTime]
+          (nextTrack>this.curTrack) ? jumpUp=true : jumpUp=false
+        }
+      }
+      jumpUp ? this.upTrack() : this.downTrack()
+    })
   }
 }
 
