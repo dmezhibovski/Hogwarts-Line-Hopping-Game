@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TestAlgo, BasicAlgo, SmartAlgo } from "./algorithmStructure";
+import { BasicAlgo, SmartAlgo } from "./algorithmStructure";
 
 export default class AlgorithmHandler extends Component {
   constructor(props) {
@@ -94,10 +94,11 @@ export default class AlgorithmHandler extends Component {
         {
           this.state.algorithms.map((player,index) => {
             return <li className="list-group-item bg-dark">
-              Player {index+1} on track: {player.getScore()}
+              Player {index+1} on track: {player.getCurTrack()} Score: {player.getScore()}
             </li>
           })
         }
+        Next Train on track: {this.state.nextTrain}
       </ul>
 
     </div>

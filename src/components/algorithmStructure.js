@@ -71,6 +71,8 @@ export class BasicAlgo extends Algo {
   }
   receiveHit(info) {
     this.jump();
+    alert("basic")
+
     this.movedTracks();
     console.log(this.curTrack + 1);
   }
@@ -86,9 +88,10 @@ export class SmartAlgo extends Algo {
   receivePlane(info) {
     this.planeInfoLog.push(info);
     this.jump()
+    alert("smart")
+
   }
   receiveHit(info) {
-    this.jump();
     this.movedTracks();
     console.log(this.curTrack + 1);
   }

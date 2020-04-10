@@ -78,7 +78,7 @@ export default class Main extends Component {
     //push new train onto list
     trainList.push({
       track: Math.floor(Math.random() * (this.state.tracks-1)+1),
-      time: new Date(new Date().getTime() + 8000),
+      time: new Date(new Date().getTime() + 50000),
     });
     //next train to come
     let nextTrain = trainList[0];
@@ -98,27 +98,7 @@ export default class Main extends Component {
     }));
   }
 
-  //plane messages
-  /*
-  sendPlane() {
-    var loopPlaneLamdaFunction = function (ele) {
-      var passInfo = [];
-      passInfo.push(ele.track);
-      passInfo.push(ele.time);
-      this.state.algoHandler.snedPlaneInfoToAlgo(passInfo);
-    };
-    this.state.trainsToCome.array.forEach(loopPlaneLamdaFunction);
-    this.state.algoHandler.snedPlaneInfoToAlgo([
-      this.state.nextTrain.track,
-      this.state.nextTrain.time,
-    ]);
-    this.state.trainsToCome.array.forEach(loopPlaneLamdaFunction);
-  }*/
-
-  // //upon end of game timer, cleanup DOM and render game results
-  // gameOver() {
-  //     return "Game over"
-  // }
+  
 
     render() {
         return (
@@ -135,7 +115,7 @@ export default class Main extends Component {
                     {/* {this.state.userTrack} */}
                     {/* Next Time of Train */}
                     Next train at: 
-                    {this.state.nextTrain.toLocaleTimeString()}
+                    {this.state.nextTrain.toLocaleTimeString()}      
                     <AlgorithmHandler
                       collision={this.state.collision}
                       curTrack={this.state.curTrack}
@@ -151,12 +131,7 @@ export default class Main extends Component {
                     {/* Track User is on*/}
                     <Track totalTracks={this.state.tracks} />
                 </div>
-                {/* Health bar and time left in game? */}
-                {/* <div className='p-0 m-0'>
-                    <div className='container-sm'>
-                        <Health className='float-left' value={this.state.health} />
-                    </div>
-                </div> */}
+        
       </div>
     );
   }
