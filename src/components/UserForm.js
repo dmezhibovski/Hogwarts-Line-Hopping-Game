@@ -11,8 +11,8 @@ function play() {
   var trains = [];
 
   for (let i = 1; i < 6; i++) {
-    let track = Math.floor(Math.random() * (tracks - 1));
-    let delay = i * 2000;
+    let track = Math.floor(Math.random() * 4);
+    let delay = i * 7500;
     trains.push({
       track: track,
       time: new Date(new Date().getTime() + delay),
@@ -45,23 +45,22 @@ export default function UserForm() {
           <Form.Label>
             <h5>Number of Tracks on Railway</h5>
           </Form.Label>
-          <Form.Control type="number" defaultValue="5" />
+          <Form.Control type="number" defaultValue="5" min="2" max="8" required/>
         </Form.Group>
         <Form.Group controlId="name">
           <Form.Label>
             <h5>Name</h5>
           </Form.Label>
-          <Form.Control type="text" defaultValue="User" />
+          <Form.Control type="text" defaultValue="Guest" pattern="[A-Za-z]+" required/>
         </Form.Group>
         <Form.Group controlId="length">
           <Form.Label>
             <h5>Game Length (Min.)</h5>
           </Form.Label>
-          <Form.Control type="number" defaultValue="2" />
+          <Form.Control type="number" defaultValue="2" min="2" max="5" required />
         </Form.Group>
         <button
           className="btn btn-lg rounded-lg btn-warning btn-block"
-          type="submit"
         >
           Begin!
         </button>

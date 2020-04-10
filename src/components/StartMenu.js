@@ -10,8 +10,6 @@ function handleClick(buttonName) {
   if (buttonName === "start") {
     // // ReactDOM.render(<Main />, document.getElementById('root'))
     ReactDOM.render(<UserForm />, document.getElementById("choice-box"));
-  } else {
-    alert(`${buttonName} clicked`);
   }
   // else if (buttonName === 'rules') {
   //     // ReactDOM.render(<Rules />, document.getElementById('root'))
@@ -22,7 +20,7 @@ function handleClick(buttonName) {
 
 export default function StartMenu() {
   return (
-    <div className="StartMenu vh-100 bg-dark d-flex flex-column align-items-center justify-content-center text-center">
+    <div className="StartMenu bg-dark d-flex flex-column align-items-center justify-content-center text-center">
       <Fadein delay="0">
         <div className="position-relative p-0 mx-0 my-5">
           <Image src={require("./../images/user.png")} className="bobbing" />
@@ -33,12 +31,12 @@ export default function StartMenu() {
         <div className="container-sm my-3 px-5 py-2">
           <Fadein delay="400">
             <button
-              className="btn btn-lg btn-light btn-block text-dark font-weight-bold px-5 py-2 my-1"
+              className="btn btn-lg btn-light btn-block text-dark font-weight-bold px-5 py-4 my-3"
               onClick={() => handleClick("start")}
             >
               Start
             </button>
-            <button
+            {/* <button
               className="btn btn-lg btn-light btn-block text-dark font-weight-bold px-5 py-2 my-1"
               onClick={() => handleClick("rules")}
             >
@@ -49,10 +47,10 @@ export default function StartMenu() {
               onClick={() => handleClick("devs")}
             >
               Devs
-            </button>
+            </button> */}
           </Fadein>
         </div>
-        <footer className="fixed-bottom">
+        <footer>
           <p className="font-italic text-light font-weight-light">
             Created by: Alex Khrulev, Anthony Greco, Calvin Mozola, Daniel Mezh,
             and McKenzie Day
