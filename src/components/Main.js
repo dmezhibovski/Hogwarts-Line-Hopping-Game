@@ -139,6 +139,10 @@ export default class Main extends Component {
           {/* Next Time of Train */}
           Next train at:
           {this.state.nextTrain.toLocaleTimeString()}
+          <div></div>
+          {/* <Hobo nextTrain='' trainTime={this.state.nextTrain.toLocaleTimeString()} numTracks={this.props.tracks}/> */}
+        </div>
+        <div class="topright">
           <AlgorithmHandler
             collision={this.state.collision}
             curTrack={this.state.curTrack}
@@ -147,18 +151,11 @@ export default class Main extends Component {
             trainTime={this.state.nextTrain.toLocaleTimeString()}
             numTracks={this.props.tracks}
           />
-          {/* <Hobo nextTrain='' trainTime={this.state.nextTrain.toLocaleTimeString()} numTracks={this.props.tracks}/> */}
         </div>
         {/* The playing area, has the track, user avatar, track user is on, time of next train coming */}
-        <div className="p-0 m-0">
+        <div className="p-0 m-0" margin-botom="100px">
           {/* Track User is on*/}
           <Track track={this.state.curTrack} />
-        </div>
-        {/* Health bar and time left in game? */}
-        <div className="p-0 m-0">
-          <div className="container-sm">
-            <Health className="float-left" value={this.state.health} />
-          </div>
         </div>
       </div>
     );
