@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BasicAlgo, SmartAlgo } from "./algorithmStructure";
+import { BasicAlgo, SmartAlgo, BigJumpAlgo } from "./algorithmStructure";
 
 export default class AlgorithmHandler extends Component {
   constructor(props) {
@@ -31,9 +31,16 @@ export default class AlgorithmHandler extends Component {
       this.algoMakesAMove
     );
     algs.push(smartalg);
+    var bigJumpAlgo = new BigJumpAlgo(
+      this.props.curTrack,
+      this.props.numTracks,
+      this.algoMakesAMove
+    );
+    algs.push(bigJumpAlgo);
     this.setState({ algorithms: algs });
     //add in the algorithms
     // this.state.algorithms.push(new TestAlgo(1, 4));
+    this.algoMakesAMove(); //call to update the player at the start
   } //end of constructor
 
   componentWillReceiveProps(nextProps) {
@@ -87,12 +94,10 @@ export default class AlgorithmHandler extends Component {
   }
 
   algoMakesAMove() {
-    console.log("ALGO IS MAKING A MOVE");
     let hoboPos = [];
     this.state.algorithms.forEach((element) => {
-      hoboPos.push([element.curTrack, typeof element]);
+      hoboPos.push([element.curTrack, element.constructor.name]);
     });
-    console.log(hoboPos);
     this.state.mainCallback(hoboPos);
   }
 
@@ -104,7 +109,7 @@ export default class AlgorithmHandler extends Component {
           {this.state.algorithms.map((player, index) => {
             return (
               <li className="list-group-item font-weight-bold">
-                Player {index + 1} score: {player.getScore()}
+                {player.constructor.name} score: {player.getScore()}
               </li>
             );
           })}

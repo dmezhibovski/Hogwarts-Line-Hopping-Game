@@ -52,7 +52,7 @@ export default function StartMenu() {
         </div>
         <footer>
           <p className="font-italic text-light font-weight-light">
-            Created by: Alex Khrulev, Anthony Greco, Calvin Mozola, Daniel Mezh,
+            Created by: Alex Khrulev, Anthony Greco, Calvin Mozola, Daniel Mezhibovski,
             and McKenzie Day
           </p>
         </footer>

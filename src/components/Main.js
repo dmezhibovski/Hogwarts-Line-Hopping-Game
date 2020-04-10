@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Track from "./Track";
-import Clock from "./Clock";
+import Clock from "./clock";
 import AlgorithmHandler from "./AlgorithmHandler";
 
 export default class Main extends Component {
@@ -17,11 +17,8 @@ export default class Main extends Component {
       nextTrainTrack: this.props.nextTrainTrack,
       trainsPassed: [],
       collision: false,
-      gameLength: this.props.gameLength*60,
-      algoStatus: [
-        [1, "a"],
-        [1, "b"],
-      ],
+      gameLength: this.props.gameLength * 60,
+      algoStatus: [],
     };
 
     // this.updateScore = this.updateScore.bind(this);

@@ -6,6 +6,7 @@ export class Algo {
     this.curTrack = this.track;
     this.scoreFromTime = 0;
     this.trainsHit = 0;
+    this.trainPassed = 0;
     this.lastMove = Date.now();
     this.eventFunc = eventCallback;
   }
@@ -30,11 +31,11 @@ export class Algo {
   }
 
   getScore() {
-    return this.scoreFromTime / 100 - this.trainsHit * 100;
+    return this.trainPassed * 100 - this.trainsHit * 300;
   }
 
   upTrack() {
-    if (this.curTrack != this.maxTrack - 1) {
+    if (this.curTrack !== this.maxTrack - 1) {
       this.curTrack++;
     } else {
       this.downTrack();
@@ -42,7 +43,7 @@ export class Algo {
   }
 
   downTrack() {
-    if (this.curTrack != 0) {
+    if (this.curTrack !== 0) {
       this.curTrack--;
     } else {
       this.upTrack();
@@ -51,17 +52,16 @@ export class Algo {
 
   jump() {
     let info = this.planeInfoLog.shift();
-    if (info == null) return;
+    if (info === null) return;
     // console.log("NEXTTRAIN    "+info[0])
-    if (info[0] == this.curTrack) {
+    if (info[0] === this.curTrack) {
       if (this.curTrack >= 0 && this.curTrack < this.maxTrack) {
         this.upTrack();
       } else {
         this.downTrack();
       }
     }
-    this.movedTracks()
-
+    this.movedTracks();
   }
 }
 
@@ -70,12 +70,12 @@ export class BasicAlgo extends Algo {
     super(startTrack, maxTrack, callBackFun);
   }
   receivePlane(info) {
+    this.trainPassed++;
     this.planeInfoLog.push(info);
   }
   receiveHit(info) {
+    super.receiveHit(info);
     this.jump();
-    console.log("GOT HIT");
-    console.log(this.curTrack + 1);
   }
   //info is track you teleported to
 }
@@ -85,10 +85,12 @@ export class SmartAlgo extends Algo {
     super(startTrack, maxTrack, callBackFun);
   }
   receivePlane(info) {
+    this.trainPassed++;
     this.planeInfoLog.push(info);
     this.jump();
   }
   receiveHit(info) {
+    super.receiveHit(info);
     this.movedTracks();
   }
   //info is track you teleported to
@@ -116,4 +118,29 @@ export class TestAlgo {
   receiveMove(info) {
     console.log("CC- move");
   }
+}
+
+export class BigJumpAlgo extends Algo {
+  constructor(startTrack, maxTrack, callBackFun) {
+    super(startTrack, maxTrack, callBackFun);
+    this.track = startTrack;
+    this.maxTrack = maxTrack;
+    this.lastPlane = [];
+    this.curTrack = this.track;
+  }
+  receiveHit(info) {
+    super.receiveHit(info);
+  }
+
+  receivePlane(info) {
+    this.trainPassed++;
+    this.lastPlane = info;
+    var nexTrack = Math.floor(Math.random() * this.maxTrack);
+    if (this.lastPlane[0] == nexTrack) {
+      nexTrack = Math.floor(Math.random() * this.maxTrack);
+    }
+    this.curTrack = nexTrack;
+    this.movedTracks();
+  }
+  receiveMove(info) {}
 }
