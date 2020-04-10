@@ -5,11 +5,14 @@ export class Algo {
     this.planeInfoLog = []; //an array of all the planes you recieved
     this.curTrack = this.track;
   }
-  receiveHit(info) {}
+
 
   //info should be in array [track number, time]
   receivePlane(info) {
     this.planeInfoLog.push(info);
+  }
+  getCurTrack(){
+    return this.curTrack
   }
 
   //info is track you teleported to
@@ -18,24 +21,28 @@ export class Algo {
 
 export class BasicAlgo extends Algo {
   constructor(startTrack, maxTrack) {
-    super(startTrack, maxTrack);
+    super(startTrack, maxTrack)
   }
 
+  receiveHit(info){
+    this.jump()
+    console.log(this.curTrack+1)
+  }
   //info is track you teleported to
   upTrack() {
-    if (this.curTrack != this.maxTrack) {
+    if (this.curTrack != this.maxTrack-1) {
       this.curTrack++;
     }
   }
 
   downTrack() {
-    if (this.curTrack != 1) {
+    if (this.curTrack != 0) {
       this.curTrack--;
     }
   }
 
   jump() {
-    let bestPick=[0,0]
+    let bestPick=[-1,0]
     let nextTrack,nextTime,jumpUp
     this.planeInfoLog.forEach((plane) =>{
       nextTrack=plane[0]
@@ -43,11 +50,12 @@ export class BasicAlgo extends Algo {
       if(nextTrack==this.curTrack+1 || nextTrack==this.curTrack-1){
         if(nextTime>bestPick[1] && nextTime>(new Date().getTime)){
           bestPick=[nextTrack,nextTime]
-          (nextTrack>this.curTrack) ? jumpUp=true : jumpUp=false
+          jumpUp=(nextTrack>this.curTrack)
         }
       }
-      jumpUp ? this.upTrack() : this.downTrack()
     })
+    jumpUp ? this.upTrack() : this.downTrack()
+
   }
 }
 
@@ -55,6 +63,7 @@ export class SmartAlgo extends Algo {
   constructor(startTrack, maxTrack) {
     super(startTrack, maxTrack);
   }
+  receiveHit(info){}
 }
 
 //tester code

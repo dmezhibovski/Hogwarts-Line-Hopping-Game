@@ -6,7 +6,6 @@ import Score from "./Score";
 import Track from "./Track";
 import Clock from "./Clock";
 import Hobo from "./Hobo";
-import Plane from "./Plane";
 import AlgorithmHandler from "./AlgorithmHandler";
 
 export default class Main extends Component {
@@ -78,7 +77,7 @@ export default class Main extends Component {
     //push new train onto list
     trainList.push({
       track: Math.floor(Math.random() * (this.state.tracks - 1)),
-      time: new Date(new Date().getTime() + 50000),
+      time: new Date(new Date().getTime() + 10000),
     });
     //next train to come
     let nextTrain = trainList[0];
@@ -96,6 +95,7 @@ export default class Main extends Component {
       nextTrain: time,
       trainsPassed: passedTrains,
     }));
+    console.log("Then nes track is at "+track)
   }
 
   //plane messages
