@@ -17,7 +17,7 @@ export default class Main extends Component {
       nextTrainTrack: this.props.nextTrainTrack,
       trainsPassed: [],
       collision: false,
-      gameLength: this.props.gameLength,
+      gameLength: this.props.gameLength*60,
       algoStatus: [
         [1, "a"],
         [1, "b"],
@@ -101,6 +101,7 @@ export default class Main extends Component {
               <Clock
                 nextTrain={this.state.nextTrain}
                 sendTrain={this.sendTrain}
+                timeLimit={this.state.gameLength}
               />
             </h3>
           </div>

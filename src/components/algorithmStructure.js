@@ -60,6 +60,8 @@ export class Algo {
         this.downTrack();
       }
     }
+    this.movedTracks()
+
   }
 }
 
@@ -72,7 +74,8 @@ export class BasicAlgo extends Algo {
   }
   receiveHit(info) {
     this.jump();
-    this.movedTracks();
+    console.log("GOT HIT");
+    console.log(this.curTrack + 1);
   }
   //info is track you teleported to
 }
@@ -86,7 +89,6 @@ export class SmartAlgo extends Algo {
     this.jump();
   }
   receiveHit(info) {
-    this.jump();
     this.movedTracks();
   }
   //info is track you teleported to

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TestAlgo, BasicAlgo, SmartAlgo } from "./algorithmStructure";
+import { BasicAlgo, SmartAlgo } from "./algorithmStructure";
 
 export default class AlgorithmHandler extends Component {
   constructor(props) {
