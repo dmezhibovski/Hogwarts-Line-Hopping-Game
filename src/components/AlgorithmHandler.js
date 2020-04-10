@@ -12,6 +12,7 @@ export default class AlgorithmHandler extends Component {
       nextTrainTime: this.props.trainTime,
       collision: this.props.collision,
       curTrack: this.props.curTrack,
+      mainCallback: this.props.callback,
     };
     //this.whereIsNextTrain = this.whereIsNextTrain.bind(this);
     this.sendPlaneInfoToAlgo = this.sendPlaneInfoToAlgo.bind(this);
@@ -85,18 +86,21 @@ export default class AlgorithmHandler extends Component {
     return [falseTrack, falseTime];
   }
 
-  
   algoMakesAMove() {
     console.log("ALGO IS MAKING A MOVE");
+    let hoboPos = [];
+    this.state.algorithms.forEach((element) => {
+      hoboPos.push([element.curTrack, typeof element]);
+    });
+    console.log(hoboPos);
+    this.state.mainCallback(hoboPos);
   }
 
   render() {
     return (
       <div>
         <ul className="list-group-flush rounded-lg p-2 bg-white text-dark">
-          <h3>
-            Scoreboard
-          </h3>
+          <h3>Scoreboard</h3>
           {this.state.algorithms.map((player, index) => {
             return (
               <li className="list-group-item font-weight-bold">

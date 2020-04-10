@@ -11,7 +11,7 @@ var trains = [];
 
 for (let i = 1; i < 6; i++) {
   let track = Math.floor(Math.random() * 4);
-  let delay = i * 10000;
+  let delay = i * 7500;
   trains.push({
     track: track,
     time: new Date(new Date().getTime() + delay),
