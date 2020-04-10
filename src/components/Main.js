@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import Health from "./Health";
 import Score from "./Score";
 import Track from "./Track";
-import Clock from "./Clock";
+import Clock from "./clock";
 import Hobo from "./Hobo";
 import AlgorithmHandler from "./AlgorithmHandler";
 
@@ -149,14 +149,14 @@ export default class Main extends Component {
                 {/* The playing area, has the track, user avatar, track user is on, time of next train coming */}
                 <div className='p-0 m-0'>
                     {/* Track User is on*/}
-                    <Track track={this.state.curTrack} />
+                    <Track totalTracks={this.state.tracks} />
                 </div>
                 {/* Health bar and time left in game? */}
-                <div className='p-0 m-0'>
+                {/* <div className='p-0 m-0'>
                     <div className='container-sm'>
                         <Health className='float-left' value={this.state.health} />
                     </div>
-                </div>
+                </div> */}
       </div>
     );
   }

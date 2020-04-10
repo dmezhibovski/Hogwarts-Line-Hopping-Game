@@ -19,11 +19,11 @@ export default class Track extends Component {
                     </div>
                 </div>
                 <Image src={require('./../images/tilted-tracks.png')} className='track' fluid />
-                <div>
+                {/* <div>
                     <h3 className='text-light font-weight-light'>
                         Track: {this.props.track}
                     </h3>
-                </div>
+                </div> */}
             </div>
         )
     }
