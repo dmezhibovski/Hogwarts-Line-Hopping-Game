@@ -16,17 +16,16 @@ export default class AlgorithmHandler extends Component {
     //this.whereIsNextTrain = this.whereIsNextTrain.bind(this);
     this.sendPlaneInfoToAlgo = this.sendPlaneInfoToAlgo.bind(this);
     this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
-
+    let algs=this.state.algorithms
+    var basicalg = new BasicAlgo(this.props.curTrack, this.props.numTracks);
+    algs.push(basicalg);
+    var smartalg = new SmartAlgo(this.props.curTrack, this.props.numTracks);
+    algs.push(smartalg);
+    this.setState({algorithms:algs})
     //add in the algorithms
-    this.state.algorithms.push(new TestAlgo(1, 4));
+    // this.state.algorithms.push(new TestAlgo(1, 4));
   } //end of constructor
 
-  componentDidMount() {
-    var basicalg = new BasicAlgo(this.props.curTrack, this.props.numTracks);
-    this.state.algorithms.push(basicalg);
-    var smartalg = new SmartAlgo(this.props.curTrack, this.props.numTracks);
-    this.state.algorithms.push(smartalg);
-  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.trainTime == this.state.nextTrainTime) {
@@ -94,6 +93,10 @@ export default class AlgorithmHandler extends Component {
   */
 
   render() {
-    return <div style={{ display: "none" }}></div>;
+    return <div >
+
+   CURRENT TRACK IS {this.state.algorithms[0].getCurTrack()}
+
+    </div>
   }
 }

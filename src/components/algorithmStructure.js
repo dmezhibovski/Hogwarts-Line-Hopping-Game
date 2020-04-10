@@ -16,6 +16,9 @@ export class Algo {
   receivePlane(info) {
     this.planeInfoLog.push(info);
   }
+  getCurTrack() {
+    return this.curTrack;
+  }
 
   //info is track you teleported to
   receiveMove(info) {}
@@ -34,34 +37,37 @@ export class BasicAlgo extends Algo {
     super(startTrack, maxTrack);
   }
 
+  receiveHit(info) {
+    this.jump();
+    console.log(this.curTrack + 1);
+  }
   //info is track you teleported to
   upTrack() {
-    if (this.curTrack != this.maxTrack) {
+    if (this.curTrack != this.maxTrack - 1) {
       this.curTrack++;
     }
   }
 
   downTrack() {
-    if (this.curTrack != 1) {
+    if (this.curTrack != 0) {
       this.curTrack--;
     }
   }
 
   jump() {
-    let bestPick = [0, 0];
+    let bestPick = [-1, 0];
     let nextTrack, nextTime, jumpUp;
     this.planeInfoLog.forEach((plane) => {
       nextTrack = plane[0];
       nextTime = plane[1];
       if (nextTrack == this.curTrack + 1 || nextTrack == this.curTrack - 1) {
         if (nextTime > bestPick[1] && nextTime > new Date().getTime) {
-          bestPick = [nextTrack, nextTime](nextTrack > this.curTrack)
-            ? (jumpUp = true)
-            : (jumpUp = false);
+          bestPick = [nextTrack, nextTime];
+          jumpUp = nextTrack > this.curTrack;
         }
       }
-      jumpUp ? this.upTrack() : this.downTrack();
     });
+    jumpUp ? this.upTrack() : this.downTrack();
   }
 }
 
@@ -69,6 +75,7 @@ export class SmartAlgo extends Algo {
   constructor(startTrack, maxTrack) {
     super(startTrack, maxTrack);
   }
+  receiveHit(info) {}
 }
 
 //tester code
