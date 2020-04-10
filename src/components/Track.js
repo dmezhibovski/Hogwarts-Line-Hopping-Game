@@ -8,7 +8,8 @@ export default class Track extends Component {
   }
 
   renderMultTracks(numOfTracks, hoboArr) {
-    let trackLen = toString(100 / numOfTracks) + "%";
+    let personLen = (30 / hoboArr.length).toString(10) + "%";
+    let trackLen = (70 / numOfTracks).toString(10) + "%";
     let tracks = [];
     for (let i = 0; i < numOfTracks; i++) {
       let hobosOnTrack = [];
@@ -18,8 +19,8 @@ export default class Track extends Component {
             <Image
               src={require("./../images/user.png")}
               className="bobbing"
-              width="10%"
-              height="10%"
+              width={personLen}
+              height={personLen}
             />
           );
         }
@@ -31,7 +32,6 @@ export default class Track extends Component {
           <Image
             src={require("./../images/tilted-tracks.png")}
             fluid
-            width="100%"
             height={trackLen}
           ></Image>
         </div>
@@ -41,31 +41,6 @@ export default class Track extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <div className="container-fluid justify-content-between">
-          <div className="col-3 position-relative">
-            {/*<Image
-              src={require("./../images/user.png")}
-              className="bobbing"
-              fluid
-            />*/}
-          </div>
-        </div>
-        {this.renderMultTracks(9, [1, 0, 5, 6, 2, 2, 2])}
-        {/*
-        <Image
-          src={require("./../images/tilted-tracks.png")}
-          className="track"
-          fluid
-        /> 
-        */}
-        {/* <div>
-                    <h3 className='text-light font-weight-light'>
-                        Track: {this.props.track}
-                    </h3>
-                </div> */}
-      </div>
-    );
+    return <div>{this.renderMultTracks(6, [1, 0, 5, 2, 2, 2])}</div>;
   }
 }

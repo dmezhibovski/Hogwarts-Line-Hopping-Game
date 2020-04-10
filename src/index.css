@@ -17,6 +17,18 @@ code {
   padding-top: -50px;
 }
 
+.scorecontainer {
+  position: relative;
+}
+
+.topright {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+  width: 200px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .bobbing {
     animation: bob infinite 2s ease-in-out;
