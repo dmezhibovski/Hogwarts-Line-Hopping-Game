@@ -109,7 +109,7 @@ export default class AlgorithmHandler extends Component {
           {this.state.algorithms.map((player, index) => {
             return (
               <li className="list-group-item font-weight-bold">
-                Player {index + 1} score: {player.getScore()}
+                {player.constructor.name} score: {player.getScore()}
               </li>
             );
           })}
