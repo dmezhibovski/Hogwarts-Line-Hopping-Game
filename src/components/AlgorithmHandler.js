@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import SmartAlg from "./SmartAlg";
 import Collision from "./Collision";
+<<<<<<< HEAD
 import basicAlgo from "./algorithmStructure";
+=======
+import {basicAlgo,SmartAlgo} from 'algorithmstucture'
+>>>>>>> 6179dd9a51bdcf01001bdc3ee4487d725907a9af
 
 export default class Main extends Component {
   constructor(props) {
@@ -83,6 +87,7 @@ export default class Main extends Component {
     }
 
     this.setState({ message: mess });
+<<<<<<< HEAD
     alert(mess);
   }
 
@@ -107,6 +112,55 @@ export default class Main extends Component {
       falseTime.toLocaleTimeString()
     );
   }
+=======
+        alert(mess);
+    }
+
+    randomNum(range) {
+        return Math.floor(Math.random() * range);
+    }
+    //Generates lie about train location
+    generateBadInfo() {
+        let currentTime = new Date();
+        // if(this.randomNum(10)<9){
+        //     falseTrack=this.state.nextTrain
+        //     falseTime=
+        // }
+        // else{
+        var falseTrack = this.randomNum(this.state.tracks) + 1;
+        var falseTime = new Date(this.randomNum(20000) + currentTime.getTime());
+        // }
+        return (
+            "Next Train is going to be on track " +
+            falseTrack +
+            " at " +
+            falseTime.toLocaleTimeString()
+        );
+    }
+    componentDidMount(){
+        this.state.algorithms.push(new basicAlgo(this.props.curTrack, this.props.numTracks)) 
+        this.state.algorithms.push(new SmartAlgo(this.props.curTrack, this.props.numTracks)) 
+
+    }
+ 
+    render(){
+     
+
+        return(
+            <div style={{display: "none"}}>
+                <Collision
+                    nextTrain={this.state.nextTrain}
+                    nextTrainTime={this.state.nextTrainTime}
+                    tracks={this.state.tracks}
+                />
+                <SmartAlg
+                    nextTrain={this.state.nextTrain}
+                    nextTrainTime={this.state.nextTrainTime}
+                />
+            </div>
+        )
+    }
+>>>>>>> 6179dd9a51bdcf01001bdc3ee4487d725907a9af
 
   render() {
     return <div style={{ display: "none" }}></div>;
