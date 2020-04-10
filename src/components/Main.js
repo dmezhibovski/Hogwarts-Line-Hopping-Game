@@ -1,11 +1,6 @@
 import React, { Component } from "react";
-// import ReactDOM from 'react-dom'
-// import Timer from './Timer'
-import Health from "./Health";
-import Score from "./Score";
 import Track from "./Track";
-import Clock from "./clock";
-import Hobo from "./Hobo";
+import Clock from "./Clock";
 import AlgorithmHandler from "./AlgorithmHandler";
 
 export default class Main extends Component {
@@ -16,47 +11,46 @@ export default class Main extends Component {
       tracks: this.props.tracks,
       score: 0,
       curTrack: Math.round(this.props.tracks / 2),
-      // trainTrack: -1,
-      // nextTrain: -1,
       health: 100,
-      // minsLeft: 5,
-      // secsLeft: 0,
       trainsToCome: this.props.trainsToCome,
       nextTrain: this.props.nextTrain,
       nextTrainTrack: this.props.nextTrainTrack,
       trainsPassed: [],
       collision: false,
       gameLength: this.props.gameLength*60,
+      algoStatus: [
+        [1, "a"],
+        [1, "b"],
+      ],
     };
 
-    this.updateScore = this.updateScore.bind(this);
-    this.updateHealth = this.updateHealth.bind(this);
+    // this.updateScore = this.updateScore.bind(this);
+    // this.updateHealth = this.updateHealth.bind(this);
     this.sendTrain = this.sendTrain.bind(this);
-
-    // this.gameOver = this.gameOver.bind(this)
-    // this.sendTrain = this.sendTrain.bind(this)
+    this.algoCallbackFun = this.algoCallbackFun.bind(this);
   }
 
   //arg: int points
   //increase score by points
-  updateScore(points) {
-    console.log(`Current Score: ${this.state.score}`);
-    this.setState((prevState) => ({
-      score: prevState.score + points,
-    }));
-    console.log(`New Score: ${this.state.score}`);
-  }
+  // updateScore(points) {
+  //   console.log(`Current Score: ${this.state.score}`);
+  //   this.setState((prevState) => ({
+  //     score: prevState.score + points,
+  //   }));
+  //   console.log(`New Score: ${this.state.score}`);
+  // }
 
   //arg: int damage
   //decrease health by damage
-  updateHealth(damage) {
-    console.log(`Current Health: ${this.state.health}`);
-    this.setState((prevState) => ({
-      health: prevState.health - damage,
-    }));
-    console.log(`New Health: ${this.state.health}`);
-  }
+  // updateHealth(damage) {
+  //   console.log(`Current Health: ${this.state.health}`);
+  //   this.setState((prevState) => ({
+  //     health: prevState.health - damage,
+  //   }));
+  //   console.log(`New Health: ${this.state.health}`);
+  // }
 
+  // train departure
   sendTrain() {
     //grab current trains list
     let trainList = this.state.trainsToCome;
@@ -64,39 +58,31 @@ export default class Main extends Component {
     let incoming = trainList.shift();
     //destructure to grab necessary info
     var { track, time } = incoming;
-    //check if user is on same track
-    // console.log(`Ur Track: ${this.state.curTrack}\nTrain: ${track}`);
-    // if (track === this.state.curTrack) {
-    //   console.log("Ouch!");
-    //   this.updateHealth(10);
-    //   this.setState({ collision: true });
-    // } else {
-    //   console.log("Close one!");
-    //   this.updateScore(100);
-    //   this.setState({ collision: false });
-    // }
     //push new train onto list
     trainList.push({
       track: Math.floor(Math.random() * (this.state.tracks - 1) + 1),
-      time: new Date(new Date().getTime() + 10000)
+      time: new Date(new Date().getTime() + 35000),
     });
     //next train to come
     let nextTrain = trainList[0];
     //destructure to grab time
     var { track, time } = nextTrain;
-    // console.log(`${track} : ${time.toLocaleTimeString()}`)
     //grab passed trains list
     let passedTrains = this.state.trainsPassed;
     //append incoming train
     passedTrains.push(incoming);
-
-    // console.log(this.state.trainsToCome)
-
+    //update state
     this.setState((prevState) => ({
       trainsToCome: trainList,
       nextTrainTrack: track,
       nextTrain: time,
       trainsPassed: passedTrains,
+    }));
+  }
+
+  algoCallbackFun(list) {
+    this.setState((prevState) => ({
+      algoStatus: list,
     }));
   }
 
@@ -135,12 +121,16 @@ export default class Main extends Component {
               nextTrain={this.state.nextTrainTrack}
               trainTime={this.state.nextTrain.toLocaleTimeString()}
               numTracks={this.props.tracks}
+              callback={this.algoCallbackFun}
             />
           </div>
         </div>
         {/* Game Area */}
-        <div className="p-0 m-0 border">
-          <Track maxTracks={this.state.tracks} />
+        <div className="p-0 m-0">
+          <Track
+            maxTracks={this.state.tracks}
+            algoStatus={this.state.algoStatus}
+          />
         </div>
       </div>
     );

@@ -12,6 +12,7 @@ export default class AlgorithmHandler extends Component {
       nextTrainTime: this.props.trainTime,
       collision: this.props.collision,
       curTrack: this.props.curTrack,
+      mainCallback: this.props.callback,
     };
     //this.whereIsNextTrain = this.whereIsNextTrain.bind(this);
     this.sendPlaneInfoToAlgo = this.sendPlaneInfoToAlgo.bind(this);
@@ -87,8 +88,12 @@ export default class AlgorithmHandler extends Component {
 
   algoMakesAMove() {
     console.log("ALGO IS MAKING A MOVE");
-    //let hoboPos = []
-    //this.state.algorithms
+    let hoboPos = [];
+    this.state.algorithms.forEach((element) => {
+      hoboPos.push([element.curTrack, typeof element]);
+    });
+    console.log(hoboPos);
+    this.state.mainCallback(hoboPos);
   }
 
   render() {

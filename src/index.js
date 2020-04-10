@@ -12,7 +12,7 @@ var trains = [];
 
 for (let i = 1; i < 6; i++) {
   let track = Math.floor(Math.random() * 4);
-  let delay = i * 2000;
+  let delay = i * 7500;
   trains.push({
     track: track,
     time: new Date(new Date().getTime() + delay),
@@ -23,13 +23,14 @@ const { track, time } = trains[0];
 // console.log(trains)
 
 ReactDOM.render(
-    <StartMenu/>,
+    <StartMenu/>
 //   <Main
 //     tracks={5}
 //     name={"Guest"}
 //     trainsToCome={trains}
 //     nextTrain={time}
 //     nextTrainTrack={track}
-//   />,
+//   />
+,
   document.getElementById("root")
 );

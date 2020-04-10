@@ -26,7 +26,7 @@ export default class Clock extends Component {
 
     tick() {
         if (this.state.time.toLocaleTimeString() == this.state.nextTrain.toLocaleTimeString()) {
-            console.log("train incoming")
+            // console.log("train incoming")
             this.props.sendTrain()
         }
         this.setState({
