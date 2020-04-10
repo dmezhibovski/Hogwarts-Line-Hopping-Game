@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { TestAlgo, BasicAlgo, SmartAlgo } from "./algorithmStructure";
 
-export default class Main extends Component {
+export default class AlgorithmHandler extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,37 +13,42 @@ export default class Main extends Component {
       collision: this.props.collision,
       curTrack: this.props.curTrack,
     };
-    this.whereIsNextTrain = this.whereIsNextTrain.bind(this);
+    //this.whereIsNextTrain = this.whereIsNextTrain.bind(this);
     this.sendPlaneInfoToAlgo = this.sendPlaneInfoToAlgo.bind(this);
     this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
-
+    this.algoMakesAMove = this.algoMakesAMove.bind(this);
+    let algs = this.state.algorithms;
+    var basicalg = new BasicAlgo(
+      this.props.curTrack,
+      this.props.numTracks,
+      this.algoMakesAMove
+    );
+    algs.push(basicalg);
+    var smartalg = new SmartAlgo(
+      this.props.curTrack,
+      this.props.numTracks,
+      this.algoMakesAMove
+    );
+    algs.push(smartalg);
+    this.setState({ algorithms: algs });
     //add in the algorithms
-    this.state.algorithms.push(new TestAlgo(1, 4));
-    // this.state.algorithms.push([new BasicAlgo(1, 4), 1, null, null]);
+    // this.state.algorithms.push(new TestAlgo(1, 4));
   } //end of constructor
 
-  componentDidMount() {
-    var basicalg = new BasicAlgo(this.props.curTrack, this.props.numTracks);
-    this.state.algorithms.push(basicalg);
-    var smartalg = new SmartAlgo(this.props.curTrack, this.props.numTracks);
-    this.state.algorithms.push(smartalg);
-  }
-
   componentWillReceiveProps(nextProps) {
-    if (nextProps.trainTime == this.state.trainTime) {
+    if (nextProps.trainTime == this.state.nextTrainTime) {
       return; //This is because the train prop was not changed therefore no updating is needed
     }
-
+    this.sendPlaneInfoToAlgo([nextProps.nextTrain, nextProps.trainTime]);
+    
     //check impacts
     this.state.algorithms.forEach((element) => {
-      var trackNumOn = element.track;
+      var trackNumOn = element.getCurTrack();
       if (trackNumOn == this.state.nextTrain) {
-        console.log("CC - you got hit");
         element.receiveHit(trackNumOn);
       }
     });
     //send planes
-    this.sendPlaneInfoToAlgo([nextProps.nextTrain, nextProps.trainTime]);
     //update
     this.setState({
       nextTrain: nextProps.nextTrain,
@@ -61,7 +66,8 @@ export default class Main extends Component {
         element.receivePlane(this.generateBadInfo(info));
       }
     });
-    console.log("CC - Sent planes to algos");
+    //console.log("CC - Sent planes to algos VVV");
+    //console.log(info);
   }
 
   randomNum(range) {
@@ -76,6 +82,7 @@ export default class Main extends Component {
   }
 
   //Updates self state on either accurate or non-accurate train info
+  /*
   whereIsNextTrain() {
     var mess;
     if (this.randomNum(10) < 9) {
@@ -91,33 +98,16 @@ export default class Main extends Component {
     this.setState({ message: mess });
     alert(mess);
   }
-
-  randomNum(range) {
-    return Math.floor(Math.random() * range);
-  }
-  //Generates lie about train location
-  generateBadInfo() {
-    let currentTime = new Date();
-    // if(this.randomNum(10)<9){
-    //     falseTrack=this.state.nextTrain
-    //     falseTime=
-    // }
-    // else{
-    var falseTrack = this.randomNum(this.state.tracks) + 1;
-    var falseTime = new Date(this.randomNum(20000) + currentTime.getTime());
-    // }
-    return (
-      "Next Train is going to be on track " +
-      falseTrack +
-      " at " +
-      falseTime.toLocaleTimeString()
-    );
+  */
+  algoMakesAMove() {
+    console.log("ALGO IS MAKING A MOVE");
   }
 
   render() {
-    return (
-    <div>
-      
-    </div>)
+    return <div >
+
+   CURRENT TRACK IS {this.state.algorithms[0].getCurTrack()}    NEXT TRACK IS {this.state.nextTrain}
+
+    </div>
   }
 }

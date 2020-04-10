@@ -6,7 +6,6 @@ import Score from "./Score";
 import Track from "./Track";
 import Clock from "./Clock";
 import Hobo from "./Hobo";
-import Plane from "./Plane";
 import AlgorithmHandler from "./AlgorithmHandler";
 
 export default class Main extends Component {
@@ -24,6 +23,7 @@ export default class Main extends Component {
       // secsLeft: 0,
       trainsToCome: this.props.trainsToCome,
       nextTrain: this.props.nextTrain,
+      nextTrainTrack: this.props.nextTrainTrack,
       trainsPassed: [],
       collision: false,
     };
@@ -76,8 +76,8 @@ export default class Main extends Component {
     }
     //push new train onto list
     trainList.push({
-      track: Math.floor(Math.random() * (this.state.tracks - 1)),
-      time: new Date(new Date().getTime() + 50000),
+      track: Math.floor(Math.random() * (this.state.tracks-1)+1),
+      time: new Date(new Date().getTime() + 8000),
     });
     //next train to come
     let nextTrain = trainList[0];
@@ -91,6 +91,7 @@ export default class Main extends Component {
 
     this.setState((prevState) => ({
       trainsToCome: trainList,
+      nextTrainTrack: track,
       nextTrain: time,
       trainsPassed: passedTrains,
     }));
