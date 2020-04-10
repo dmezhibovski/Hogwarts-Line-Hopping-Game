@@ -85,24 +85,7 @@ export default class AlgorithmHandler extends Component {
     return [falseTrack, falseTime];
   }
 
-  //Updates self state on either accurate or non-accurate train info
-  /*
-  whereIsNextTrain() {
-    var mess;
-    if (this.randomNum(10) < 9) {
-      mess =
-        "Next Train is going to be on track " +
-        this.state.nextTrain +
-        " at " +
-        this.state.nextTrainTime;
-    } else {
-      mess = this.generateBadInfo() + " FALSE";
-    }
-
-    this.setState({ message: mess });
-    alert(mess);
-  }
-  */
+  
   algoMakesAMove() {
     console.log("ALGO IS MAKING A MOVE");
   }
