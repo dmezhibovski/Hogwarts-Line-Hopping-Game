@@ -35,7 +35,7 @@ export class Algo {
   }
 
   upTrack() {
-    if (this.curTrack != this.maxTrack - 1) {
+    if (this.curTrack !== this.maxTrack - 1) {
       this.curTrack++;
     } else {
       this.downTrack();
@@ -43,7 +43,7 @@ export class Algo {
   }
 
   downTrack() {
-    if (this.curTrack != 0) {
+    if (this.curTrack !== 0) {
       this.curTrack--;
     } else {
       this.upTrack();
@@ -52,9 +52,9 @@ export class Algo {
 
   jump() {
     let info = this.planeInfoLog.shift();
-    if (info == null) return;
+    if (info === null) return;
     // console.log("NEXTTRAIN    "+info[0])
-    if (info[0] == this.curTrack) {
+    if (info[0] === this.curTrack) {
       if (this.curTrack >= 0 && this.curTrack < this.maxTrack) {
         this.upTrack();
       } else {

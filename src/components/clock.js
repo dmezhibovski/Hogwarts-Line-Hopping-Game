@@ -33,7 +33,7 @@ export default class Clock extends Component {
             time: new Date(),
             timer:this.state.timer+1
         });
-        if(this.state.timer == this.state.timeLimit){
+        if(this.state.timer === this.state.timeLimit){
             console.log("Time over")
         }
 
