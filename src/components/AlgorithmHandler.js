@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SmartAlg from "./SmartAlg";
 import Collision from "./Collision";
-import {basicAlgo,SmartAlgo} from 'algorithmstucture'
+import {BasicAlgo,SmartAlgo} from './algorithmStructure'
 
 export default class Main extends Component {
     constructor(props) {
@@ -20,6 +20,14 @@ export default class Main extends Component {
         this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
   
     }   //end of constructor
+
+    componentDidMount(){
+        var basicalg=new BasicAlgo(this.props.curTrack, this.props.numTracks)
+        this.state.algorithms.push(basicalg) 
+        var smartalg=new SmartAlgo(this.props.curTrack, this.props.numTracks)
+        this.state.algorithms.push(smartalg) 
+
+    }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.trainTime == this.state.trainTime) {
@@ -105,11 +113,7 @@ export default class Main extends Component {
             falseTime.toLocaleTimeString()
         );
     }
-    componentDidMount(){
-        this.state.algorithms.push(new basicAlgo(this.props.curTrack, this.props.numTracks)) 
-        this.state.algorithms.push(new SmartAlgo(this.props.curTrack, this.props.numTracks)) 
-
-    }
+    
  
     render(){
      

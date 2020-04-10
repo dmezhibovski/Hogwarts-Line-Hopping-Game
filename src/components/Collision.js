@@ -11,21 +11,22 @@ export default class Collision extends Component{
     }
     componentWillReceiveProps(nextProps){
         this.setState({
-            messages:messages.push(nextProps.message)
+            messages:this.state.messages.push(nextProps.message)
         }) 
         if(nextProps.collision){
-            jump()
+            this.jump()
         }
     }
     upTrack (){
-        if(curTrack!=tracks){
-            curTrack++
+        if(this.state.curTrack!=this.state.tracks){
+            this.setState({curTrack:this.state.curTrack++})
         }
     }
     
     downTrack (){
-        if(curTrack!=1){
-            curTrack--
+        if(this.state.curTrack!=1){
+            this.setState({curTrack:this.state.curTrack--})
+
         }
     }
 
