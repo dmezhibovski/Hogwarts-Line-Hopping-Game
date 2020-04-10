@@ -21,53 +21,45 @@ export default class basicAlgo {
   }
 }
 
-/*  template
-
-class basicAlgo {
-class Algo{
+class Algo {
   constructor(startTrack, maxTrack) {
     this.track = startTrack;
     this.maxTrack = maxTrack;
     this.planeInfoLog = []; //an array of all the planes you recieved
-    this.curTrack = this.track
+    this.curTrack = this.track;
   }
-   //info is track that you got hit on
-   receiveHit(info) {}
+  //info is track that you got hit on
+  receiveHit(info) {}
 
-   //info should be in array [track number, time]
-   receivePlane(info) {}
- 
-   //info is track you teleported to
-   receiveMove(info) {}
+  //info should be in array [track number, time]
+  receivePlane(info) {}
+
+  //info is track you teleported to
+  receiveMove(info) {}
 }
 
-class basicAlgo extends Algo{
+class basicAlgo extends Algo {
   constructor(startTrack, maxTrack) {
-    super(startTrack,maxTrack)
+    super(startTrack, maxTrack);
   }
 
-  upTrack (){
-      if(this.curTrack!=this.maxTrack){
-          this.curTrack++
-      }
+  upTrack() {
+    if (this.curTrack != this.maxTrack) {
+      this.curTrack++;
+    }
   }
 
-  downTrack (){
-      if(this.curTrack!=1){
-          this.curTrack--
-      }
+  downTrack() {
+    if (this.curTrack != 1) {
+      this.curTrack--;
+    }
   }
 
-  jump(){
-
-
-  }
-
+  jump() {}
 }
 
-class SmartAlgo{
+class SmartAlgo {
   constructor(startTrack, maxTrack) {
-    super(startTrack,maxTrack)
+    super(startTrack, maxTrack);
   }
 }
-*/
