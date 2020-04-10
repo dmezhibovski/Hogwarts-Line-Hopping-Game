@@ -66,13 +66,13 @@ export class TestAlgo {
     this.curTrack = this.track;
   }
   receiveHit(info) {
-    console.log("CC- hit");
+    console.log("CC- hit " + info);
   }
 
   //info should be in array [track number, time]
   receivePlane(info) {
     this.planeInfoLog.push(info);
-    console.log("CC- plane");
+    console.log("CC- plane " + info);
   }
 
   //info is track you teleported to

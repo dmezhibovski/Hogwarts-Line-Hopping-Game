@@ -13,7 +13,7 @@ export default class Main extends Component {
       collision: this.props.collision,
       curTrack: this.props.curTrack,
     };
-    this.whereIsNextTrain = this.whereIsNextTrain.bind(this);
+    //this.whereIsNextTrain = this.whereIsNextTrain.bind(this);
     this.sendPlaneInfoToAlgo = this.sendPlaneInfoToAlgo.bind(this);
     this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
 
@@ -29,7 +29,8 @@ export default class Main extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.trainTime == this.state.trainTime) {
+    if (nextProps.trainTime == this.state.nextTrainTime) {
+      console.log("returning");
       return; //This is because the train prop was not changed therefore no updating is needed
     }
 
@@ -37,7 +38,7 @@ export default class Main extends Component {
     this.state.algorithms.forEach((element) => {
       var trackNumOn = element.track;
       if (trackNumOn == this.state.nextTrain) {
-        console.log("CC - you got hit");
+        //console.log("CC - you got hit");
         element.receiveHit(trackNumOn);
       }
     });
@@ -60,7 +61,8 @@ export default class Main extends Component {
         element.receivePlane(this.generateBadInfo(info));
       }
     });
-    console.log("CC - Sent planes to algos");
+    //console.log("CC - Sent planes to algos VVV");
+    //console.log(info);
   }
 
   randomNum(range) {
@@ -75,6 +77,7 @@ export default class Main extends Component {
   }
 
   //Updates self state on either accurate or non-accurate train info
+  /*
   whereIsNextTrain() {
     var mess;
     if (this.randomNum(10) < 9) {
@@ -90,28 +93,7 @@ export default class Main extends Component {
     this.setState({ message: mess });
     alert(mess);
   }
-
-  randomNum(range) {
-    return Math.floor(Math.random() * range);
-  }
-  //Generates lie about train location
-  generateBadInfo() {
-    let currentTime = new Date();
-    // if(this.randomNum(10)<9){
-    //     falseTrack=this.state.nextTrain
-    //     falseTime=
-    // }
-    // else{
-    var falseTrack = this.randomNum(this.state.tracks) + 1;
-    var falseTime = new Date(this.randomNum(20000) + currentTime.getTime());
-    // }
-    return (
-      "Next Train is going to be on track " +
-      falseTrack +
-      " at " +
-      falseTime.toLocaleTimeString()
-    );
-  }
+  */
 
   render() {
     return <div style={{ display: "none" }}></div>;
