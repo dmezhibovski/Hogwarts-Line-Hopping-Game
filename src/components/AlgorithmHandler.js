@@ -36,8 +36,8 @@ export default class AlgorithmHandler extends Component {
   } //end of constructor
 
   componentWillReceiveProps(nextProps) {
-    console.log("next Props:");
-    console.log(nextProps);
+    // console.log("next Props:");
+    // console.log(nextProps);
     if (nextProps.trainTime == this.state.nextTrainTime) {
       return; //This is because the train prop was not changed therefore no updating is needed
     }
@@ -46,8 +46,8 @@ export default class AlgorithmHandler extends Component {
     //check impacts
     this.state.algorithms.forEach((element) => {
       var trackNumOn = element.getCurTrack();
-      console.log("Check hit >>" + trackNumOn + " = " + this.state.nextTrain);
-      console.log(typeof this.state.nextTrain);
+      // console.log("Check hit >>" + trackNumOn + " = " + this.state.nextTrain);
+      // console.log(typeof this.state.nextTrain);
       if (trackNumOn == this.state.nextTrain) {
         element.receiveHit(trackNumOn);
       }
@@ -93,12 +93,14 @@ export default class AlgorithmHandler extends Component {
   render() {
     return (
       <div>
-        <ul className="list-group-flush border rounded-lg p-1">
-          Scoreboard
+        <ul className="list-group-flush rounded-lg p-2 bg-white text-dark">
+          <h3>
+            Scoreboard
+          </h3>
           {this.state.algorithms.map((player, index) => {
             return (
-              <li className="list-group-item bg-dark">
-                Player {index + 1} on track: {player.getScore()}
+              <li className="list-group-item font-weight-bold">
+                Player {index + 1} score: {player.getScore()}
               </li>
             );
           })}

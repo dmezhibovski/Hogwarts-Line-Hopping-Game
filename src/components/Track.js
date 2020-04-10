@@ -7,6 +7,10 @@ export default class Track extends Component {
     super(props);
   }
 
+  // componentWillReceiveProps(nextProps) {
+    
+  // }
+
   renderMultTracks(numOfTracks, hoboArr) {
     let personLen = (30 / hoboArr.length).toString(10) + "%";
     let trackLen = (70 / numOfTracks).toString(10) + "%";
@@ -33,7 +37,7 @@ export default class Track extends Component {
             src={require("./../images/tilted-tracks.png")}
             fluid
             height={trackLen}
-          ></Image>
+          />
         </div>
       );
     }
@@ -41,6 +45,6 @@ export default class Track extends Component {
   }
 
   render() {
-    return <div>{this.renderMultTracks(6, [1, 0, 5, 2, 2, 2])}</div>;
+    return <div>{this.renderMultTracks(6, [1, 0, 5, 2, 4, 3])}</div>;
   }
 }
