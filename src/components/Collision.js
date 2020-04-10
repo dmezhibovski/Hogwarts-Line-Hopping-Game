@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-
+//import React, { Component } from "react";
+/*
 export default class Collision extends Component{
     constructor(props){
         super(props)
@@ -39,3 +39,4 @@ export default class Collision extends Component{
         return(null)
     }
 }
+*/
