@@ -115,6 +115,9 @@ export default class Main extends Component {
   }
 
   render() {
-    return <div style={{ display: "none" }}></div>;
+    return (
+    <div>
+      
+    </div>)
   }
 }
