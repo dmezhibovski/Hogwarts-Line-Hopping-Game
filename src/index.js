@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // ReactDOM.render(<App />, document.getElementById('root'));
 
 import Main from "./components/Main";
+import StartMenu from "./components/StartMenu"
 var trains = [];
 
 for (let i = 1; i < 6; i++) {
@@ -22,12 +23,13 @@ const { track, time } = trains[0];
 // console.log(trains)
 
 ReactDOM.render(
-  <Main
-    tracks={5}
-    name={"Guest"}
-    trainsToCome={trains}
-    nextTrain={time}
-    nextTrainTrack={track}
-  />,
+    <StartMenu/>,
+//   <Main
+//     tracks={5}
+//     name={"Guest"}
+//     trainsToCome={trains}
+//     nextTrain={time}
+//     nextTrainTrack={track}
+//   />,
   document.getElementById("root")
 );

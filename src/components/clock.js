@@ -5,7 +5,9 @@ export default class Clock extends Component {
         super(props)
         this.state = {
             time: new Date(),
-            nextTrain: this.props.nextTrain
+            nextTrain: this.props.nextTrain,
+            timeLimit:this.props.timeLimit,
+            timer:0
         }
         this.tick = this.tick.bind(this)
     }
@@ -28,8 +30,13 @@ export default class Clock extends Component {
             this.props.sendTrain()
         }
         this.setState({
-            time: new Date()
+            time: new Date(),
+            timer:this.state.timer+1
         });
+        if(this.state.timer == this.state.timeLimit){
+            console.log("Time over")
+        }
+
     }
 
     render() {
