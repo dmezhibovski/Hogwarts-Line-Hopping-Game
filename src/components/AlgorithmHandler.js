@@ -1,25 +1,25 @@
 import React, { Component } from "react";
-import SmartAlg from "./SmartAlg";
-import Collision from "./Collision";
 import {BasicAlgo,SmartAlgo} from './algorithmStructure'
 
 export default class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            algorithms : [],//Will contain lists of [algo ref,trackOn,nextJump,time of jump]
-            nextTimeJump : null,
-            tracks: this.props.numTracks,
-            nextTrain: this.props.nextTrain,
-            nextTrainTime: this.props.trainTime,
-            collision:this.props.collision,
-            curTrack:this.props.curTrack,
-        }
-        this.whereIsNextTrain = this.whereIsNextTrain.bind(this);
-        this.sendPlaneInfoToAlgo = this.sendPlaneInfoToAlgo.bind(this);
-        this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
-  
-    }   //end of constructor
+  constructor(props) {
+    super(props);
+    this.state = {
+      algorithms: [], //Will contain lists of [algo ref,trackOn,nextJump,time of jump]
+      nextTimeJump: null,
+      tracks: this.props.numTracks,
+      nextTrain: this.props.nextTrain,
+      nextTrainTime: this.props.trainTime,
+      collision: this.props.collision,
+      curTrack: this.props.curTrack,
+    };
+    this.whereIsNextTrain = this.whereIsNextTrain.bind(this);
+    this.sendPlaneInfoToAlgo = this.sendPlaneInfoToAlgo.bind(this);
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+
+    //add in the algorithms
+    // this.state.algorithms.push([new BasicAlgo(1, 4), 1, null, null]);
+  } //end of constructor
 
     componentDidMount(){
         var basicalg=new BasicAlgo(this.props.curTrack, this.props.numTracks)
@@ -36,10 +36,10 @@ export default class Main extends Component {
 
     //check impacts
     this.state.algorithms.forEach((element) => {
-      var trackNumOn = element[1];
+      var trackNumOn = element.curTrack;
       if (trackNumOn == this.state.nextTrain) {
         console.log("CC - you got hit");
-        element[0].receiveHit(trackNumOn);
+        element.receiveHit(trackNumOn);
       }
     });
     //send planes
@@ -56,12 +56,12 @@ export default class Main extends Component {
     //the zero index of the array is the algo references
     this.state.algorithms.forEach((element) => {
       if (this.randomNum(10) < 9) {
-        element[0].receivePlane(info);
+        element.receivePlane(info);
       } else {
-        element[0].receivePlane(this.generateBadInfo(info));
+        element.receivePlane(this.generateBadInfo(info));
       }
     });
-    console.log("Sent planes to algos");
+    console.log("CC - Sent planes to algos");
   }
 
   randomNum(range) {
@@ -89,48 +89,33 @@ export default class Main extends Component {
     }
 
     this.setState({ message: mess });
-        alert(mess);
-    }
+    alert(mess);
+  }
 
-    randomNum(range) {
-        return Math.floor(Math.random() * range);
-    }
-    //Generates lie about train location
-    generateBadInfo() {
-        let currentTime = new Date();
-        // if(this.randomNum(10)<9){
-        //     falseTrack=this.state.nextTrain
-        //     falseTime=
-        // }
-        // else{
-        var falseTrack = this.randomNum(this.state.tracks) + 1;
-        var falseTime = new Date(this.randomNum(20000) + currentTime.getTime());
-        // }
-        return (
-            "Next Train is going to be on track " +
-            falseTrack +
-            " at " +
-            falseTime.toLocaleTimeString()
-        );
-    }
-    
- 
-    render(){
-     
+  randomNum(range) {
+    return Math.floor(Math.random() * range);
+  }
+  //Generates lie about train location
+  generateBadInfo() {
+    let currentTime = new Date();
+    // if(this.randomNum(10)<9){
+    //     falseTrack=this.state.nextTrain
+    //     falseTime=
+    // }
+    // else{
+    var falseTrack = this.randomNum(this.state.tracks) + 1;
+    var falseTime = new Date(this.randomNum(20000) + currentTime.getTime());
+    // }
+    return (
+      "Next Train is going to be on track " +
+      falseTrack +
+      " at " +
+      falseTime.toLocaleTimeString()
+    );
+  }
 
-        return(
-            <div style={{display: "none"}}>
-                <Collision
-                    nextTrain={this.state.nextTrain}
-                    nextTrainTime={this.state.nextTrainTime}
-                    tracks={this.state.tracks}
-                />
-                <SmartAlg
-                    nextTrain={this.state.nextTrain}
-                    nextTrainTime={this.state.nextTrainTime}
-                />
-            </div>
-        )
-    }
 
+  render() {
+    return <div style={{ display: "none" }}></div>;
+  }
 }
