@@ -22,7 +22,7 @@ export default class Track extends Component {
   }
 
   renderMultTracks(numOfTracks, hoboArr) {
-    // let personLen = (30 / hoboArr.length).toString(10);
+    let personLen = (50 / hoboArr.length).toString(10);
     // let trackLen = (70 / numOfTracks).toString(10);
     let tracks = [];
     for (let i = 0; i < numOfTracks; i++) {
@@ -35,7 +35,7 @@ export default class Track extends Component {
                 src={require("./../images/user.png")}
                 className="bobbing"
                 alt="this is alt"
-                width="200"
+                width={personLen}
                 // fluid
               />
               <Figure.Caption className="text-white text-center">

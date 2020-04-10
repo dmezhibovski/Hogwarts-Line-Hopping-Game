@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BasicAlgo, SmartAlgo } from "./algorithmStructure";
+import { BasicAlgo, SmartAlgo, BigJumpAlgo } from "./algorithmStructure";
 
 export default class AlgorithmHandler extends Component {
   constructor(props) {
@@ -31,6 +31,12 @@ export default class AlgorithmHandler extends Component {
       this.algoMakesAMove
     );
     algs.push(smartalg);
+    var bigJumpAlgo = new BigJumpAlgo(
+      this.props.curTrack,
+      this.props.numTracks,
+      this.algoMakesAMove
+    );
+    algs.push(bigJumpAlgo);
     this.setState({ algorithms: algs });
     //add in the algorithms
     // this.state.algorithms.push(new TestAlgo(1, 4));
@@ -87,12 +93,10 @@ export default class AlgorithmHandler extends Component {
   }
 
   algoMakesAMove() {
-    console.log("ALGO IS MAKING A MOVE");
     let hoboPos = [];
     this.state.algorithms.forEach((element) => {
       hoboPos.push([element.curTrack, typeof element]);
     });
-    console.log(hoboPos);
     this.state.mainCallback(hoboPos);
   }
 

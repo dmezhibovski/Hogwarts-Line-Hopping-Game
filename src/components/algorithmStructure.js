@@ -61,8 +61,7 @@ export class Algo {
         this.downTrack();
       }
     }
-    this.movedTracks()
-
+    this.movedTracks();
   }
 }
 
@@ -75,9 +74,8 @@ export class BasicAlgo extends Algo {
     this.planeInfoLog.push(info);
   }
   receiveHit(info) {
+    super.receiveHit(info);
     this.jump();
-    console.log("GOT HIT");
-    console.log(this.curTrack + 1);
   }
   //info is track you teleported to
 }
@@ -92,6 +90,7 @@ export class SmartAlgo extends Algo {
     this.jump();
   }
   receiveHit(info) {
+    super.receiveHit(info);
     this.movedTracks();
   }
   //info is track you teleported to
@@ -119,4 +118,28 @@ export class TestAlgo {
   receiveMove(info) {
     console.log("CC- move");
   }
+}
+
+export class BigJumpAlgo extends Algo {
+  constructor(startTrack, maxTrack, callBackFun) {
+    super(startTrack, maxTrack, callBackFun);
+    this.track = startTrack;
+    this.maxTrack = maxTrack;
+    this.lastPlane = [];
+    this.curTrack = this.track;
+  }
+  receiveHit(info) {
+    super.receiveHit(info);
+  }
+
+  receivePlane(info) {
+    this.trainPassed++;
+    this.lastPlane = info;
+    var nexTrack = Math.floor(Math.random() * this.maxTrack);
+    if (this.lastPlane[0] == nextTrack) {
+      var nextTrack = Math.floor(Math.random() * this.maxTrack);
+    }
+    this.movedTracks();
+  }
+  receiveMove(info) {}
 }
