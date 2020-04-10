@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TestAlgo, basicAlgo, SmartAlgo } from "./algorithmStructure";
+import { TestAlgo, BasicAlgo, SmartAlgo } from "./algorithmStructure";
 
 export default class Main extends Component {
   constructor(props) {
@@ -19,7 +19,15 @@ export default class Main extends Component {
 
     //add in the algorithms
     this.state.algorithms.push(new TestAlgo(1, 4));
+    // this.state.algorithms.push([new BasicAlgo(1, 4), 1, null, null]);
   } //end of constructor
+
+  componentDidMount() {
+    var basicalg = new BasicAlgo(this.props.curTrack, this.props.numTracks);
+    this.state.algorithms.push(basicalg);
+    var smartalg = new SmartAlgo(this.props.curTrack, this.props.numTracks);
+    this.state.algorithms.push(smartalg);
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.trainTime == this.state.trainTime) {
@@ -103,14 +111,6 @@ export default class Main extends Component {
       falseTrack +
       " at " +
       falseTime.toLocaleTimeString()
-    );
-  }
-  componentDidMount() {
-    this.state.algorithms.push(
-      new basicAlgo(this.props.curTrack, this.props.numTracks)
-    );
-    this.state.algorithms.push(
-      new SmartAlgo(this.props.curTrack, this.props.numTracks)
     );
   }
 
