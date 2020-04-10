@@ -140,7 +140,7 @@ export default class Main extends Component {
         </div>
         {/* Game Area */}
         <div className="p-0 m-0 border">
-          <Track track={this.state.curTrack} />
+          <Track maxTracks={this.state.tracks} />
         </div>
       </div>
     );
