@@ -22,7 +22,7 @@ export default class Track extends Component {
   }
 
   renderMultTracks(numOfTracks, hoboArr) {
-    let personLen = (50 / hoboArr.length).toString(10);
+    let personLen = (50 + 200 / numOfTracks).toString(10);
     // let trackLen = (70 / numOfTracks).toString(10);
     let tracks = [];
     for (let i = 0; i < numOfTracks; i++) {
@@ -39,7 +39,7 @@ export default class Track extends Component {
                 // fluid
               />
               <Figure.Caption className="text-white text-center">
-                Player {}
+                {element[1]}
               </Figure.Caption>
             </Figure>
           );

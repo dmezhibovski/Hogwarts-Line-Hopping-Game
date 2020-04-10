@@ -31,7 +31,7 @@ export class Algo {
   }
 
   getScore() {
-    return this.trainPassed * 100 - this.trainsHit * 400;
+    return this.trainPassed * 100 - this.trainsHit * 300;
   }
 
   upTrack() {
@@ -136,9 +136,10 @@ export class BigJumpAlgo extends Algo {
     this.trainPassed++;
     this.lastPlane = info;
     var nexTrack = Math.floor(Math.random() * this.maxTrack);
-    if (this.lastPlane[0] == nextTrack) {
-      var nextTrack = Math.floor(Math.random() * this.maxTrack);
+    if (this.lastPlane[0] == nexTrack) {
+      nexTrack = Math.floor(Math.random() * this.maxTrack);
     }
+    this.curTrack = nexTrack;
     this.movedTracks();
   }
   receiveMove(info) {}

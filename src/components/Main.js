@@ -18,10 +18,7 @@ export default class Main extends Component {
       trainsPassed: [],
       collision: false,
       gameLength: this.props.gameLength * 60,
-      algoStatus: [
-        [1, "a"],
-        [1, "b"],
-      ],
+      algoStatus: [],
     };
 
     // this.updateScore = this.updateScore.bind(this);

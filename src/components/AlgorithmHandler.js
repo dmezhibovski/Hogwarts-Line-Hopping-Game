@@ -40,6 +40,7 @@ export default class AlgorithmHandler extends Component {
     this.setState({ algorithms: algs });
     //add in the algorithms
     // this.state.algorithms.push(new TestAlgo(1, 4));
+    this.algoMakesAMove(); //call to update the player at the start
   } //end of constructor
 
   componentWillReceiveProps(nextProps) {
@@ -95,7 +96,7 @@ export default class AlgorithmHandler extends Component {
   algoMakesAMove() {
     let hoboPos = [];
     this.state.algorithms.forEach((element) => {
-      hoboPos.push([element.curTrack, typeof element]);
+      hoboPos.push([element.curTrack, element.constructor.name]);
     });
     this.state.mainCallback(hoboPos);
   }
