@@ -1,4 +1,4 @@
-export default class basicAlgo {
+export class TestAlgo {
   constructor(startTrack, maxTrack) {
     this.track = startTrack;
     this.maxTrack = maxTrack;
@@ -38,7 +38,7 @@ class Algo {
   receiveMove(info) {}
 }
 
-class basicAlgo extends Algo {
+export class basicAlgo extends Algo {
   constructor(startTrack, maxTrack) {
     super(startTrack, maxTrack);
   }
@@ -58,7 +58,7 @@ class basicAlgo extends Algo {
   jump() {}
 }
 
-class SmartAlgo {
+export class SmartAlgo extends Algo {
   constructor(startTrack, maxTrack) {
     super(startTrack, maxTrack);
   }

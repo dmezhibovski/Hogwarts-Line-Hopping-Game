@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import SmartAlg from "./SmartAlg";
-import Collision from "./Collision";
-import { basicAlgo, SmartAlgo } from "./algorithmStructure";
+import { TestAlgo, basicAlgo, SmartAlgo } from "./algorithmStructure";
 
 export default class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      algorithms: [], //Will contain lists of [algo ref,trackOn,nextJump,time of jump]
+      algorithms: [],
       nextTimeJump: null,
       tracks: this.props.numTracks,
       nextTrain: this.props.nextTrain,
@@ -20,7 +18,7 @@ export default class Main extends Component {
     this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
 
     //add in the algorithms
-    this.state.algorithms.push([new basicAlgo(1, 4), 1, null, null]);
+    this.state.algorithms.push(new TestAlgo(1, 4));
   } //end of constructor
 
   componentWillReceiveProps(nextProps) {
@@ -30,10 +28,10 @@ export default class Main extends Component {
 
     //check impacts
     this.state.algorithms.forEach((element) => {
-      var trackNumOn = element[1];
+      var trackNumOn = element.track;
       if (trackNumOn == this.state.nextTrain) {
         console.log("CC - you got hit");
-        element[0].receiveHit(trackNumOn);
+        element.receiveHit(trackNumOn);
       }
     });
     //send planes
@@ -50,9 +48,9 @@ export default class Main extends Component {
     //the zero index of the array is the algo references
     this.state.algorithms.forEach((element) => {
       if (this.randomNum(10) < 9) {
-        element[0].receivePlane(info);
+        element.receivePlane(info);
       } else {
-        element[0].receivePlane(this.generateBadInfo(info));
+        element.receivePlane(this.generateBadInfo(info));
       }
     });
     console.log("CC - Sent planes to algos");
