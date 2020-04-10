@@ -30,6 +30,8 @@ export default class Main extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log("calling receive:");
+    console.log(nextProps);
     if (nextProps.trainTime == this.state.trainTime) {
       return; //This is because the train prop was not changed therefore no updating is needed
     }
@@ -61,7 +63,8 @@ export default class Main extends Component {
         element.receivePlane(this.generateBadInfo(info));
       }
     });
-    console.log("CC - Sent planes to algos");
+    console.log("CC - Sent planes to algos VVV");
+    console.log(info);
   }
 
   randomNum(range) {
