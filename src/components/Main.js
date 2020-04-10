@@ -92,6 +92,7 @@ export default class Main extends Component {
 
     this.setState((prevState) => ({
       trainsToCome: trainList,
+      nextTrainTrack: track,
       nextTrain: time,
       trainsPassed: passedTrains,
     }));
