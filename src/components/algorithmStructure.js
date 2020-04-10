@@ -6,6 +6,7 @@ export class Algo {
     this.curTrack = this.track;
     this.scoreFromTime = 0;
     this.trainsHit = 0;
+    this.trainPassed = 0;
     this.lastMove = Date.now();
     this.eventFunc = eventCallback;
   }
@@ -30,7 +31,7 @@ export class Algo {
   }
 
   getScore() {
-    return this.scoreFromTime / 100 - this.trainsHit * 100;
+    return this.trainPassed * 100 - this.trainsHit * 400;
   }
 
   upTrack() {
@@ -64,6 +65,7 @@ export class BasicAlgo extends Algo {
     super(startTrack, maxTrack, callBackFun);
   }
   receivePlane(info) {
+    this.trainPassed++;
     this.planeInfoLog.push(info);
   }
   receiveHit(info) {
@@ -78,6 +80,7 @@ export class SmartAlgo extends Algo {
     super(startTrack, maxTrack, callBackFun);
   }
   receivePlane(info) {
+    this.trainPassed++;
     this.planeInfoLog.push(info);
     this.jump();
   }
