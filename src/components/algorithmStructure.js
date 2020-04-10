@@ -68,9 +68,7 @@ export class BasicAlgo extends Algo {
   }
   receiveHit(info) {
     this.jump();
-    console.log("GOT HIT");
     this.movedTracks();
-    console.log(this.curTrack + 1);
   }
   //info is track you teleported to
 }
@@ -86,7 +84,6 @@ export class SmartAlgo extends Algo {
   receiveHit(info) {
     this.jump();
     this.movedTracks();
-    console.log(this.curTrack + 1);
   }
   //info is track you teleported to
 }
