@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { TestAlgo, BasicAlgo, SmartAlgo } from "./algorithmStructure";
 
-export default class Main extends Component {
+export default class AlgorithmHandler extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,7 +30,6 @@ export default class Main extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.trainTime == this.state.nextTrainTime) {
-      console.log("returning");
       return; //This is because the train prop was not changed therefore no updating is needed
     }
 
@@ -38,7 +37,6 @@ export default class Main extends Component {
     this.state.algorithms.forEach((element) => {
       var trackNumOn = element.track;
       if (trackNumOn == this.state.nextTrain) {
-        //console.log("CC - you got hit");
         element.receiveHit(trackNumOn);
       }
     });
