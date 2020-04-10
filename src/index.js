@@ -19,6 +19,7 @@ for (let i = 1; i < 6; i++) {
 }
 
 const { track, time } = trains[0];
+// console.log(trains)
 
 ReactDOM.render(
   <Main

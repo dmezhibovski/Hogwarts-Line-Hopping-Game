@@ -65,20 +65,20 @@ export default class Main extends Component {
     //destructure to grab necessary info
     var { track, time } = incoming;
     //check if user is on same track
-    console.log(`Ur Track: ${this.state.curTrack}\nTrain: ${track}`);
-    if (track === this.state.curTrack) {
-      console.log("Ouch!");
-      this.updateHealth(10);
-      this.setState({ collision: true });
-    } else {
-      console.log("Close one!");
-      this.updateScore(100);
-      this.setState({ collision: false });
-    }
+    // console.log(`Ur Track: ${this.state.curTrack}\nTrain: ${track}`);
+    // if (track === this.state.curTrack) {
+    //   console.log("Ouch!");
+    //   this.updateHealth(10);
+    //   this.setState({ collision: true });
+    // } else {
+    //   console.log("Close one!");
+    //   this.updateScore(100);
+    //   this.setState({ collision: false });
+    // }
     //push new train onto list
     trainList.push({
       track: Math.floor(Math.random() * (this.state.tracks - 1) + 1),
-      time: new Date(new Date().getTime() + 8000),
+      time: new Date(new Date().getTime() + 10000)
     });
     //next train to come
     let nextTrain = trainList[0];
@@ -90,6 +90,8 @@ export default class Main extends Component {
     //append incoming train
     passedTrains.push(incoming);
 
+    // console.log(this.state.trainsToCome)
+
     this.setState((prevState) => ({
       trainsToCome: trainList,
       nextTrainTrack: track,
@@ -98,43 +100,46 @@ export default class Main extends Component {
     }));
   }
 
-  
-
   render() {
     return (
       <div
-        className="Main bg-dark text-light vh-100 p-0 m-0 container-fluid d-flex flex-column flex-nowrap justify-content-between"
+        className="Main bg-dark text-light vh-100 p-0 m-0 container-fluid d-flex flex-column flex-nowrap justify-content-center"
         id="game-area"
       >
-        {/* user info such as name, score, and current time */}
-        <div className="p-3 m-0 border d-flex flex-row justify-content-around">
-          {/* User Name */}
-          {/* {this.state.user} */}
-          {/* User Score */}
-          {/* <Score value={this.state.score} /> */}
+        {/* Game Info*/}
+        <div className="p-3 m-0 d-flex flex-row justify-content-around fixed-top">
           {/* Current Time */}
-          <Clock nextTrain={this.state.nextTrain} sendTrain={this.sendTrain} />
-          {/* Track User is on */}
-          {/* {this.state.userTrack} */}
+          <div className="text-center">
+            <h3 className="font-weight-light">
+              Current Time:
+            </h3>
+            <h3 className="text-monospace">
+              <Clock nextTrain={this.state.nextTrain} sendTrain={this.sendTrain} />
+            </h3>
+          </div>
           {/* Next Time of Train */}
-          Next train at:
-          {this.state.nextTrain.toLocaleTimeString()}
-          <div></div>
-          {/* <Hobo nextTrain='' trainTime={this.state.nextTrain.toLocaleTimeString()} numTracks={this.props.tracks}/> */}
+          <div className="text-center">
+            <h3 className="font-weight-light">
+              Next train at:
+            </h3>
+            <h3 className="text-monospace">
+              {this.state.nextTrain.toLocaleTimeString()}
+            </h3>
+          </div>
+          {/* Scoreboard */}
+          <div>
+            <AlgorithmHandler
+              collision={this.state.collision}
+              curTrack={this.state.curTrack}
+              tracks={this.state.tracks}
+              nextTrain={this.state.nextTrainTrack}
+              trainTime={this.state.nextTrain.toLocaleTimeString()}
+              numTracks={this.props.tracks}
+            />
+          </div>
         </div>
-        <div class="topright">
-          <AlgorithmHandler
-            collision={this.state.collision}
-            curTrack={this.state.curTrack}
-            tracks={this.state.tracks}
-            nextTrain={this.state.nextTrainTrack}
-            trainTime={this.state.nextTrain.toLocaleTimeString()}
-            numTracks={this.props.tracks}
-          />
-        </div>
-        {/* The playing area, has the track, user avatar, track user is on, time of next train coming */}
-        <div className="p-0 m-0" margin-botom="100px">
-          {/* Track User is on*/}
+        {/* Game Area */}
+        <div className="p-0 m-0 border">
           <Track track={this.state.curTrack} />
         </div>
       </div>
