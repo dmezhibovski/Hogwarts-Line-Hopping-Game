@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Track from "./Track";
-import Clock from "./Clock";
+import Clock from "./clock";
 import AlgorithmHandler from "./AlgorithmHandler";
 
 export default class Main extends Component {
