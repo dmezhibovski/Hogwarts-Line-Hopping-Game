@@ -19,8 +19,8 @@ export default class Main extends Component {
     let algs=this.state.algorithms
     var basicalg = new BasicAlgo(this.props.curTrack, this.props.numTracks);
     algs.push(basicalg);
-    var smartalg = new SmartAlgo(this.props.curTrack, this.props.numTracks);
-    algs.push(smartalg);
+    // var smartalg = new SmartAlgo(this.props.curTrack, this.props.numTracks);
+    // algs.push(smartalg);
     this.setState({algorithms:algs})
     //add in the algorithms
     // this.state.algorithms.push(new TestAlgo(1, 4));
@@ -32,17 +32,17 @@ export default class Main extends Component {
       console.log("returning");
       return; //This is because the train prop was not changed therefore no updating is needed
     }
-
+    this.sendPlaneInfoToAlgo([nextProps.nextTrain, nextProps.trainTime]);
+    
     //check impacts
     this.state.algorithms.forEach((element) => {
-      var trackNumOn = element.track;
+      var trackNumOn = element.getCurTrack();
       if (trackNumOn == this.state.nextTrain) {
         //console.log("CC - you got hit");
         element.receiveHit(trackNumOn);
       }
     });
     //send planes
-    this.sendPlaneInfoToAlgo([nextProps.nextTrain, nextProps.trainTime]);
     //update
     this.setState({
       nextTrain: nextProps.nextTrain,
@@ -97,7 +97,7 @@ export default class Main extends Component {
   render() {
     return <div >
 
-   CURRENT TRACK IS {this.state.algorithms[0].getCurTrack()}
+   CURRENT TRACK IS {this.state.algorithms[0].getCurTrack()}    NEXT TRACK IS {this.state.nextTrain}
 
     </div>
   }

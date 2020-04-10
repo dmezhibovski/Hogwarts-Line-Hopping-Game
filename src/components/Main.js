@@ -76,8 +76,8 @@ export default class Main extends Component {
     }
     //push new train onto list
     trainList.push({
-      track: Math.floor(Math.random() * (this.state.tracks - 1)),
-      time: new Date(new Date().getTime() + 10000),
+      track: Math.floor(Math.random() * (this.state.tracks-1)+1),
+      time: new Date(new Date().getTime() + 8000),
     });
     //next train to come
     let nextTrain = trainList[0];
@@ -95,7 +95,6 @@ export default class Main extends Component {
       nextTrain: time,
       trainsPassed: passedTrains,
     }));
-    console.log("Then nes track is at "+track)
   }
 
   //plane messages
