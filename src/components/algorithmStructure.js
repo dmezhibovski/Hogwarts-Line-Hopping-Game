@@ -1,12 +1,13 @@
 export class Algo {
-  constructor(startTrack, maxTrack) {
+  constructor(startTrack, maxTrack, eventCallback) {
     this.track = startTrack;
     this.maxTrack = maxTrack;
     this.planeInfoLog = []; //an array of all the planes you recieved
     this.curTrack = this.track;
     this.scoreFromTime = 0;
     this.trainsHit = 0;
-    this.lastMove = Date.getTime();
+    this.lastMove = Date.now();
+    this.eventFunc = eventCallback;
   }
   receiveHit(info) {
     this.trainsHit++;
@@ -23,8 +24,11 @@ export class Algo {
   //info is track you teleported to
   receiveMove(info) {}
 
-  addScoreFromTime() {
-    this.scoreFromTime += Date.getTime() - this.lastMove; //millis seconds
+  movedTracks() {
+    this.eventFunc();
+    //update score
+    this.scoreFromTime += Date.now() - this.lastMove; //millis seconds
+    this.lastMove = Date.now();
   }
 
   getScore() {
@@ -33,12 +37,13 @@ export class Algo {
 }
 
 export class BasicAlgo extends Algo {
-  constructor(startTrack, maxTrack) {
-    super(startTrack, maxTrack);
+  constructor(startTrack, maxTrack, callBackFun) {
+    super(startTrack, maxTrack, callBackFun);
   }
 
   receiveHit(info) {
     this.jump();
+    this.movedTracks();
     console.log(this.curTrack + 1);
   }
   //info is track you teleported to
@@ -72,8 +77,8 @@ export class BasicAlgo extends Algo {
 }
 
 export class SmartAlgo extends Algo {
-  constructor(startTrack, maxTrack) {
-    super(startTrack, maxTrack);
+  constructor(startTrack, maxTrack, callBackFun) {
+    super(startTrack, maxTrack, callBackFun);
   }
   receiveHit(info) {}
 }

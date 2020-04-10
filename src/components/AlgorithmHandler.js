@@ -16,16 +16,24 @@ export default class AlgorithmHandler extends Component {
     //this.whereIsNextTrain = this.whereIsNextTrain.bind(this);
     this.sendPlaneInfoToAlgo = this.sendPlaneInfoToAlgo.bind(this);
     this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
-    let algs=this.state.algorithms
-    var basicalg = new BasicAlgo(this.props.curTrack, this.props.numTracks);
+    this.algoMakesAMove = this.algoMakesAMove.bind(this);
+    let algs = this.state.algorithms;
+    var basicalg = new BasicAlgo(
+      this.props.curTrack,
+      this.props.numTracks,
+      this.algoMakesAMove
+    );
     algs.push(basicalg);
-    var smartalg = new SmartAlgo(this.props.curTrack, this.props.numTracks);
+    var smartalg = new SmartAlgo(
+      this.props.curTrack,
+      this.props.numTracks,
+      this.algoMakesAMove
+    );
     algs.push(smartalg);
-    this.setState({algorithms:algs})
+    this.setState({ algorithms: algs });
     //add in the algorithms
     // this.state.algorithms.push(new TestAlgo(1, 4));
   } //end of constructor
-
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.trainTime == this.state.nextTrainTime) {
@@ -91,12 +99,11 @@ export default class AlgorithmHandler extends Component {
     alert(mess);
   }
   */
+  algoMakesAMove() {
+    console.log("ALGO IS MAKING A MOVE");
+  }
 
   render() {
-    return <div >
-
-   CURRENT TRACK IS {this.state.algorithms[0].getCurTrack()}
-
-    </div>
+    return <div>CURRENT TRACK IS {this.state.algorithms[0].getCurTrack()}</div>;
   }
 }
