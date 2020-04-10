@@ -27,6 +27,10 @@ export default class Main extends Component {
       trainsPassed: [],
       collision: false,
       gameLength: this.props.gameLength,
+      algoStatus: [
+        [1, "a"],
+        [1, "b"],
+      ],
     };
 
     this.updateScore = this.updateScore.bind(this);
@@ -35,6 +39,7 @@ export default class Main extends Component {
 
     // this.gameOver = this.gameOver.bind(this)
     // this.sendTrain = this.sendTrain.bind(this)
+    this.algoCallbackFun = this.algoCallbackFun.bind(this);
   }
 
   //arg: int points
@@ -100,6 +105,12 @@ export default class Main extends Component {
     }));
   }
 
+  algoCallbackFun(list) {
+    this.setState((prevState) => ({
+      algoStatus: list,
+    }));
+  }
+
   render() {
     return (
       <div
@@ -134,12 +145,16 @@ export default class Main extends Component {
               nextTrain={this.state.nextTrainTrack}
               trainTime={this.state.nextTrain.toLocaleTimeString()}
               numTracks={this.props.tracks}
+              callback={this.algoCallbackFun}
             />
           </div>
         </div>
         {/* Game Area */}
         <div className="p-0 m-0 border">
-          <Track maxTracks={this.state.tracks} />
+          <Track
+            maxTracks={this.state.tracks}
+            algoStatus={this.state.algoStatus}
+          />
         </div>
       </div>
     );

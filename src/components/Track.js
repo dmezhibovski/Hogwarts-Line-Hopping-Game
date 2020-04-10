@@ -11,12 +11,15 @@ export default class Track extends Component {
     super(props);
     this.state = {
       trackNum: props.maxTracks,
+      algoStatus: props.algoStatus,
     };
   }
 
-  // componentWillReceiveProps(nextProps) {
-    
-  // }
+  componentWillReceiveProps(nextProps) {
+    this.setState((prevState) => ({
+      algoStatus: nextProps.algoStatus,
+    }));
+  }
 
   renderMultTracks(numOfTracks, hoboArr) {
     let personLen = (30 / hoboArr.length).toString(10) + "%";
@@ -50,19 +53,13 @@ export default class Track extends Component {
         </div>
       );
     }
-    console.log("RENDERING with");
-    console.log(tracks);
     return tracks;
   }
 
   render() {
     return (
       <div>
-        {this.renderMultTracks(this.state.trackNum, [
-          [1, "Hello"],
-          [1, "world"],
-          [3, "lving"],
-        ])}
+        {this.renderMultTracks(this.state.trackNum, this.state.algoStatus)}
       </div>
     );
   }
