@@ -133,7 +133,7 @@ export default class Main extends Component {
                     {/* Track User is on */}
                     {/* {this.state.userTrack} */}
                     {/* Next Time of Train */}
-                    Next traing at: 
+                    Next train at: 
                     {this.state.nextTrain.toLocaleTimeString()}
                     <AlgorithmHandler
                       collision={this.state.collision}

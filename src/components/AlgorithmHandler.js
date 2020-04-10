@@ -103,10 +103,19 @@ export default class AlgorithmHandler extends Component {
     console.log("ALGO IS MAKING A MOVE");
   }
 
-  render() {
-    return <div >
 
-   CURRENT TRACK IS {this.state.algorithms[0].getCurTrack()}    NEXT TRACK IS {this.state.nextTrain}
+  render() {
+    return <div>
+      <ul className="list-group-flush border rounded-lg p-1">
+        Scoreboard
+        {
+          this.state.algorithms.map((player,index) => {
+            return <li className="list-group-item bg-dark">
+              Player {index+1} on track: {player.getScore()}
+            </li>
+          })
+        }
+      </ul>
 
     </div>
   }
