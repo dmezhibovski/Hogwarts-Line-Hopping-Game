@@ -1,35 +1,54 @@
 export class Algo {
-  constructor(startTrack, maxTrack) {
+  constructor(startTrack, maxTrack, eventCallback) {
+    this.track = startTrack;
     this.maxTrack = maxTrack;
-    this.planeInfoLog=[]//an array of all the planes you recieved
-    this.curTrack = startTrack;
+    this.planeInfoLog = []; //an array of all the planes you recieved
+    this.curTrack = this.track;
+    this.scoreFromTime = 0;
+    this.trainsHit = 0;
+    this.lastMove = Date.now();
+    this.eventFunc = eventCallback;
   }
-
+  receiveHit(info) {
+    this.trainsHit++;
+  }
 
   //info should be in array [track number, time]
   receivePlane(info) {
     this.planeInfoLog.push(info);
   }
-  getCurTrack(){
-    return this.curTrack
+  getCurTrack() {
+    return this.curTrack;
   }
 
   //info is track you teleported to
   receiveMove(info) {}
+
+  movedTracks() {
+    this.eventFunc();
+    //update score
+    this.scoreFromTime += Date.now() - this.lastMove; //millis seconds
+    this.lastMove = Date.now();
+  }
+
+  getScore() {
+    return this.scoreFromTime / 100 - this.trainsHit * 100;
+  }
 }
 
 export class BasicAlgo extends Algo {
-  constructor(startTrack, maxTrack) {
-    super(startTrack, maxTrack)
+  constructor(startTrack, maxTrack, callBackFun) {
+    super(startTrack, maxTrack, callBackFun);
   }
 
-  receiveHit(info){
-    this.jump()
-    // console.log(this.curTrack+1)
+  receiveHit(info) {
+    this.jump();
+    this.movedTracks();
+    console.log(this.curTrack + 1);
   }
   //info is track you teleported to
   upTrack() {
-    if (this.curTrack != this.maxTrack-1) {
+    if (this.curTrack != this.maxTrack - 1) {
       this.curTrack++;
     }
   }
@@ -43,7 +62,7 @@ export class BasicAlgo extends Algo {
 
   jump() {
     let info=this.planeInfoLog.shift()
-    console.log("NEXTTRAIN    "+info[0])
+    // console.log("NEXTTRAIN    "+info[0])
     if(info[0]==this.curTrack){
       if(this.curTrack<this.maxTrack-1){
         this.upTrack()
@@ -57,10 +76,10 @@ export class BasicAlgo extends Algo {
 }
 
 export class SmartAlgo extends Algo {
-  constructor(startTrack, maxTrack) {
-    super(startTrack, maxTrack);
+  constructor(startTrack, maxTrack, callBackFun) {
+    super(startTrack, maxTrack, callBackFun);
   }
-  receiveHit(info){}
+  receiveHit(info) {}
 }
 
 //tester code

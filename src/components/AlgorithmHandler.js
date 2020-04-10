@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { TestAlgo, BasicAlgo, SmartAlgo } from "./algorithmStructure";
 
-export default class Main extends Component {
+export default class AlgorithmHandler extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,20 +16,27 @@ export default class Main extends Component {
     //this.whereIsNextTrain = this.whereIsNextTrain.bind(this);
     this.sendPlaneInfoToAlgo = this.sendPlaneInfoToAlgo.bind(this);
     this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
-    let algs=this.state.algorithms
-    var basicalg = new BasicAlgo(this.props.curTrack, this.props.numTracks);
+    this.algoMakesAMove = this.algoMakesAMove.bind(this);
+    let algs = this.state.algorithms;
+    var basicalg = new BasicAlgo(
+      this.props.curTrack,
+      this.props.numTracks,
+      this.algoMakesAMove
+    );
     algs.push(basicalg);
-    // var smartalg = new SmartAlgo(this.props.curTrack, this.props.numTracks);
-    // algs.push(smartalg);
-    this.setState({algorithms:algs})
+    var smartalg = new SmartAlgo(
+      this.props.curTrack,
+      this.props.numTracks,
+      this.algoMakesAMove
+    );
+    algs.push(smartalg);
+    this.setState({ algorithms: algs });
     //add in the algorithms
     // this.state.algorithms.push(new TestAlgo(1, 4));
   } //end of constructor
 
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.trainTime == this.state.nextTrainTime) {
-      console.log("returning");
       return; //This is because the train prop was not changed therefore no updating is needed
     }
     this.sendPlaneInfoToAlgo([nextProps.nextTrain, nextProps.trainTime]);
@@ -38,7 +45,6 @@ export default class Main extends Component {
     this.state.algorithms.forEach((element) => {
       var trackNumOn = element.getCurTrack();
       if (trackNumOn == this.state.nextTrain) {
-        //console.log("CC - you got hit");
         element.receiveHit(trackNumOn);
       }
     });
@@ -93,6 +99,9 @@ export default class Main extends Component {
     alert(mess);
   }
   */
+  algoMakesAMove() {
+    console.log("ALGO IS MAKING A MOVE");
+  }
 
   render() {
     return <div >
