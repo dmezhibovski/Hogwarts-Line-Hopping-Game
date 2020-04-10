@@ -86,7 +86,6 @@ export class SmartAlgo extends Algo {
   }
   receiveHit(info) {
     this.movedTracks();
-    console.log(this.curTrack + 1);
   }
   //info is track you teleported to
 }
