@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 function play() {
   const tracks = document.getElementById("numTracks").value;
   const name = document.getElementById("name").value;
+  const gameLength = document.getElementById("length").value;
   var trains = [];
 
   for (let i = 1; i < 6; i++) {
@@ -27,6 +28,7 @@ function play() {
       trainsToCome={trains}
       nextTrain={time}
       nextTrainTrack={track}
+      gameLength={gameLength}
     />,
     document.getElementById("root")
   );
@@ -50,6 +52,12 @@ export default function UserForm() {
             <h5>Name</h5>
           </Form.Label>
           <Form.Control type="text" defaultValue="User" />
+        </Form.Group>
+        <Form.Group controlId="length">
+          <Form.Label>
+            <h5>Game Length (Min.)</h5>
+          </Form.Label>
+          <Form.Control type="number" defaultValue="2" />
         </Form.Group>
         <button
           className="btn btn-lg rounded-lg btn-warning btn-block"

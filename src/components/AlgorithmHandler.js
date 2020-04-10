@@ -105,8 +105,15 @@ export default class AlgorithmHandler extends Component {
 
   render() {
     return <div >
+        <p>
+   CURRENT TRACK IS {this.state.algorithms[0].getCurTrack()}    NEXT TRACK IS {this.state.nextTrain}   Score: {this.state.algorithms[0].getScore()}
 
-   CURRENT TRACK IS {this.state.algorithms[0].getCurTrack()}    NEXT TRACK IS {this.state.nextTrain}
+        </p>
+        <p>
+   CURRENT TRACK IS {this.state.algorithms[1].getCurTrack()}    NEXT TRACK IS {this.state.nextTrain}     Score: {this.state.algorithms[1].getScore()}
+
+        </p>
+
 
     </div>
   }

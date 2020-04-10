@@ -26,6 +26,7 @@ export default class Main extends Component {
       nextTrainTrack: this.props.nextTrainTrack,
       trainsPassed: [],
       collision: false,
+      gameLength:this.props.gameLength,
     };
 
     this.updateScore = this.updateScore.bind(this);
