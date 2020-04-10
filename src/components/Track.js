@@ -22,22 +22,26 @@ export default class Track extends Component {
   }
 
   renderMultTracks(numOfTracks, hoboArr) {
-    let personLen = (30 / hoboArr.length).toString(10) + "%";
-    let trackLen = (70 / numOfTracks).toString(10) + "%";
+    // let personLen = (30 / hoboArr.length).toString(10);
+    // let trackLen = (70 / numOfTracks).toString(10);
     let tracks = [];
     for (let i = 0; i < numOfTracks; i++) {
       let hobosOnTrack = [];
       hoboArr.forEach((element) => {
         if (element[0] == i) {
           hobosOnTrack.push(
-            <Figure.Image
-              src={require("./../images/user.png")}
-              className="bobbing"
-              alt="this is alt"
-              fluid
-              width={personLen}
-              height={personLen}
-            />
+            <Figure>
+              <Figure.Image
+                src={require("./../images/user.png")}
+                className="bobbing"
+                alt="this is alt"
+                width="200"
+                // fluid
+              />
+              <Figure.Caption className="text-white text-center">
+                Player {}
+              </Figure.Caption>
+            </Figure>
           );
         }
       });
@@ -48,7 +52,7 @@ export default class Track extends Component {
           <Image
             src={require("./../images/tilted-tracks.png")}
             fluid
-            height={trackLen}
+            // height={trackLen}
           />
         </div>
       );

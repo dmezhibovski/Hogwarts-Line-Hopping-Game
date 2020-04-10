@@ -37,12 +37,16 @@ export class Algo {
   upTrack() {
     if (this.curTrack != this.maxTrack - 1) {
       this.curTrack++;
+    } else {
+      this.downTrack();
     }
   }
 
   downTrack() {
     if (this.curTrack != 0) {
       this.curTrack--;
+    } else {
+      this.upTrack();
     }
   }
 
@@ -51,12 +55,14 @@ export class Algo {
     if (info == null) return;
     // console.log("NEXTTRAIN    "+info[0])
     if (info[0] == this.curTrack) {
-      if (this.curTrack < this.maxTrack - 1) {
+      if (this.curTrack >= 0 && this.curTrack < this.maxTrack) {
         this.upTrack();
       } else {
         this.downTrack();
       }
     }
+    this.movedTracks()
+
   }
 }
 
@@ -70,7 +76,8 @@ export class BasicAlgo extends Algo {
   }
   receiveHit(info) {
     this.jump();
-    this.movedTracks();
+    console.log("GOT HIT");
+    console.log(this.curTrack + 1);
   }
   //info is track you teleported to
 }
@@ -85,7 +92,6 @@ export class SmartAlgo extends Algo {
     this.jump();
   }
   receiveHit(info) {
-    this.jump();
     this.movedTracks();
   }
   //info is track you teleported to

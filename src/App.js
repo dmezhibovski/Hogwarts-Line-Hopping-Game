@@ -4,7 +4,7 @@ import StartMenu from './components/StartMenu'
 
 export default function App() {
   return (
-    <div className='App'>
+    <div className='App bg-dark'>
       <StartMenu />
     </div>
   )
