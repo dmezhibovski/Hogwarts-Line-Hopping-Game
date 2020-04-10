@@ -26,7 +26,7 @@ export default class Main extends Component {
       nextTrainTrack: this.props.nextTrainTrack,
       trainsPassed: [],
       collision: false,
-      gameLength:this.props.gameLength,
+      gameLength: this.props.gameLength,
     };
 
     this.updateScore = this.updateScore.bind(this);
@@ -77,8 +77,8 @@ export default class Main extends Component {
     }
     //push new train onto list
     trainList.push({
-      track: Math.floor(Math.random() * (this.state.tracks-1)+1),
-      time: new Date(new Date().getTime() + 50000),
+      track: Math.floor(Math.random() * (this.state.tracks - 1) + 1),
+      time: new Date(new Date().getTime() + 8000),
     });
     //next train to come
     let nextTrain = trainList[0];
@@ -100,38 +100,46 @@ export default class Main extends Component {
 
   
 
-    render() {
-        return (
-            <div className='Main bg-dark text-light vh-100 p-0 m-0 container-fluid d-flex flex-column flex-nowrap justify-content-between' id='game-area'>
-                {/* user info such as name, score, and current time */}
-                <div className='p-3 m-0 border d-flex flex-row justify-content-around'>
-                    {/* User Name */}
-                    {/* {this.state.user} */}
-                    {/* User Score */}
-                    {/* <Score value={this.state.score} /> */}
-                    {/* Current Time */}
-                            <Clock nextTrain={this.state.nextTrain} sendTrain={this.sendTrain} />
-                    {/* Track User is on */}
-                    {/* {this.state.userTrack} */}
-                    {/* Next Time of Train */}
-                    Next train at: 
-                    {this.state.nextTrain.toLocaleTimeString()}      
-                    <AlgorithmHandler
-                      collision={this.state.collision}
-                      curTrack={this.state.curTrack}
-                      tracks={this.state.tracks}
-                      nextTrain=''
-                      trainTime={this.state.nextTrain.toLocaleTimeString()}
-                      numTracks={this.props.tracks}
-                    />
-                    {/* <Hobo nextTrain='' trainTime={this.state.nextTrain.toLocaleTimeString()} numTracks={this.props.tracks}/> */}
-                </div>
-                {/* The playing area, has the track, user avatar, track user is on, time of next train coming */}
-                <div className='p-0 m-0'>
-                    {/* Track User is on*/}
-                    <Track totalTracks={this.state.tracks} />
-                </div>
-        
+  render() {
+    return (
+      <div
+        className="Main bg-dark text-light vh-100 p-0 m-0 container-fluid d-flex flex-column flex-nowrap justify-content-between"
+        id="game-area"
+      >
+        {/* user info such as name, score, and current time */}
+        <div className="p-3 m-0 border d-flex flex-row justify-content-around">
+          {/* User Name */}
+          {/* {this.state.user} */}
+          {/* User Score */}
+          {/* <Score value={this.state.score} /> */}
+          {/* Current Time */}
+          <Clock nextTrain={this.state.nextTrain} sendTrain={this.sendTrain} />
+          {/* Track User is on */}
+          {/* {this.state.userTrack} */}
+          {/* Next Time of Train */}
+          Next train at:
+          {this.state.nextTrain.toLocaleTimeString()}
+          <AlgorithmHandler
+            collision={this.state.collision}
+            curTrack={this.state.curTrack}
+            tracks={this.state.tracks}
+            nextTrain={this.state.nextTrainTrack}
+            trainTime={this.state.nextTrain.toLocaleTimeString()}
+            numTracks={this.props.tracks}
+          />
+          {/* <Hobo nextTrain='' trainTime={this.state.nextTrain.toLocaleTimeString()} numTracks={this.props.tracks}/> */}
+        </div>
+        {/* The playing area, has the track, user avatar, track user is on, time of next train coming */}
+        <div className="p-0 m-0">
+          {/* Track User is on*/}
+          <Track track={this.state.curTrack} />
+        </div>
+        {/* Health bar and time left in game? */}
+        <div className="p-0 m-0">
+          <div className="container-sm">
+            <Health className="float-left" value={this.state.health} />
+          </div>
+        </div>
       </div>
     );
   }

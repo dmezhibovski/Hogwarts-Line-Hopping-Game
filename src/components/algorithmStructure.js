@@ -14,7 +14,7 @@ export class Algo {
   }
 
   //info should be in array [track number, time]
- 
+
   getCurTrack() {
     return this.curTrack;
   }
@@ -43,23 +43,22 @@ export class Algo {
     if (this.curTrack != 0) {
       this.curTrack--;
     }
- 
   }
 
   jump() {
-    let info=this.planeInfoLog.shift()
-    if(info==null)
-      return
+    let info = this.planeInfoLog.shift();
+    if (info == null) return;
     // console.log("NEXTTRAIN    "+info[0])
-    if(info[0]==this.curTrack){
-      if(this.curTrack<this.maxTrack-1){
-        this.upTrack()
-      }
-      else{
-        this.downTrack()
+    if (info[0] == this.curTrack) {
+      if (this.curTrack < this.maxTrack - 1) {
+        this.upTrack();
+      } else {
+        this.downTrack();
       }
     }
-  } 
+    this.movedTracks()
+
+  }
 }
 
 export class BasicAlgo extends Algo {
@@ -71,14 +70,10 @@ export class BasicAlgo extends Algo {
   }
   receiveHit(info) {
     this.jump();
-    alert("basic")
-
-    this.movedTracks();
+    console.log("GOT HIT");
     console.log(this.curTrack + 1);
   }
   //info is track you teleported to
-  
-    
 }
 
 export class SmartAlgo extends Algo {
@@ -87,9 +82,7 @@ export class SmartAlgo extends Algo {
   }
   receivePlane(info) {
     this.planeInfoLog.push(info);
-    this.jump()
-    alert("smart")
-
+    this.jump();
   }
   receiveHit(info) {
     this.movedTracks();

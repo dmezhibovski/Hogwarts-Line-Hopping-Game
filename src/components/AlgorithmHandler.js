@@ -36,14 +36,18 @@ export default class AlgorithmHandler extends Component {
   } //end of constructor
 
   componentWillReceiveProps(nextProps) {
+    console.log("next Props:");
+    console.log(nextProps);
     if (nextProps.trainTime == this.state.nextTrainTime) {
       return; //This is because the train prop was not changed therefore no updating is needed
     }
     this.sendPlaneInfoToAlgo([nextProps.nextTrain, nextProps.trainTime]);
-    
+
     //check impacts
     this.state.algorithms.forEach((element) => {
       var trackNumOn = element.getCurTrack();
+      console.log("Check hit >>" + trackNumOn + " = " + this.state.nextTrain);
+      console.log(typeof this.state.nextTrain);
       if (trackNumOn == this.state.nextTrain) {
         element.receiveHit(trackNumOn);
       }
@@ -85,7 +89,6 @@ export default class AlgorithmHandler extends Component {
   algoMakesAMove() {
     console.log("ALGO IS MAKING A MOVE");
   }
-
 
   render() {
     return <div>
