@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import Health from "./Health";
 import Score from "./Score";
 import Track from "./Track";
-import Clock from "./Clock";
+import Clock from "./clock";
 import Hobo from "./Hobo";
 import AlgorithmHandler from "./AlgorithmHandler";
 
@@ -78,7 +78,7 @@ export default class Main extends Component {
     //push new train onto list
     trainList.push({
       track: Math.floor(Math.random() * (this.state.tracks - 1) + 1),
-      time: new Date(new Date().getTime() + 50000)
+      time: new Date(new Date().getTime() + 50000),
     });
     //next train to come
     let nextTrain = trainList[0];
@@ -110,18 +110,17 @@ export default class Main extends Component {
         <div className="p-3 m-0 d-flex flex-row justify-content-around fixed-top">
           {/* Current Time */}
           <div className="text-center">
-            <h3 className="font-weight-light">
-              Current Time:
-            </h3>
+            <h3 className="font-weight-light">Current Time:</h3>
             <h3 className="text-monospace">
-              <Clock nextTrain={this.state.nextTrain} sendTrain={this.sendTrain} />
+              <Clock
+                nextTrain={this.state.nextTrain}
+                sendTrain={this.sendTrain}
+              />
             </h3>
           </div>
           {/* Next Time of Train */}
           <div className="text-center">
-            <h3 className="font-weight-light">
-              Next train at:
-            </h3>
+            <h3 className="font-weight-light">Next train at:</h3>
             <h3 className="text-monospace">
               {this.state.nextTrain.toLocaleTimeString()}
             </h3>
@@ -140,7 +139,7 @@ export default class Main extends Component {
         </div>
         {/* Game Area */}
         <div className="p-0 m-0 border">
-          <Track track={this.state.curTrack} />
+          <Track maxTracks={this.state.tracks} />
         </div>
       </div>
     );

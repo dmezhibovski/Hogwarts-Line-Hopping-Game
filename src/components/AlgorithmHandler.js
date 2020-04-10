@@ -85,18 +85,17 @@ export default class AlgorithmHandler extends Component {
     return [falseTrack, falseTime];
   }
 
-  
   algoMakesAMove() {
     console.log("ALGO IS MAKING A MOVE");
+    //let hoboPos = []
+    //this.state.algorithms
   }
 
   render() {
     return (
       <div>
         <ul className="list-group-flush rounded-lg p-2 bg-white text-dark">
-          <h3>
-            Scoreboard
-          </h3>
+          <h3>Scoreboard</h3>
           {this.state.algorithms.map((player, index) => {
             return (
               <li className="list-group-item font-weight-bold">
