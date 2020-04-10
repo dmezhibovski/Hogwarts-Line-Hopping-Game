@@ -38,14 +38,14 @@ export default function UserForm() {
   return (
     <FadeIn>
       <Form
-        className="text-left bg-light p-3 rounded-lg"
+        className="text-left bg-light p-3 m-3 rounded-lg"
         onSubmit={() => play()}
       >
         <Form.Group controlId="numTracks">
           <Form.Label>
             <h5>Number of Tracks on Railway</h5>
           </Form.Label>
-          <Form.Control type="number" defaultValue="5" min="2" max="8" required/>
+          <Form.Control type="number" defaultValue="5" min="2" max="5" required/>
         </Form.Group>
         <Form.Group controlId="name">
           <Form.Label>

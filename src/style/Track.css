@@ -1,0 +1,42 @@
+.train {
+    /* position: absolute; */
+    right: 0;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+}
+
+.track {
+    z-index: 0;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.user {
+    z-index: 1;
+    /* position: absolute; */
+    border: 1px solid red;
+    margin: 0;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .train {
+      animation: move infinite 8s linear;
+    }
+  }
+  
+  @keyframes move {
+    from {
+        transform: translateX(99vw);
+        /* right: 0px; */
+    }
+    to {
+        transform: translateX(-500vw);
+        /* left: 0px; */
+    }
+  }

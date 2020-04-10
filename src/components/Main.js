@@ -78,6 +78,7 @@ export default class Main extends Component {
       nextTrain: time,
       trainsPassed: passedTrains,
     }));
+    // setTimeout(() => {}, 1000)
   }
 
   algoCallbackFun(list) {
@@ -89,11 +90,11 @@ export default class Main extends Component {
   render() {
     return (
       <div
-        className="Main bg-dark text-light vh-100 p-0 m-0 container-fluid d-flex flex-column flex-nowrap justify-content-center"
+        className="Main bg-dark text-light vh-100 p-0 m-0 container-fluid d-flex flex-column flex-nowrap justify-content-between"
         id="game-area"
       >
         {/* Game Info*/}
-        <div className="p-3 m-0 d-flex flex-row justify-content-around fixed-top">
+        <div className="p-3 m-0 d-flex flex-row justify-content-around">
           {/* Current Time */}
           <div className="text-center">
             <h3 className="font-weight-light">Current Time:</h3>
@@ -130,6 +131,7 @@ export default class Main extends Component {
           <Track
             maxTracks={this.state.tracks}
             algoStatus={this.state.algoStatus}
+            incomingTrain={this.state.nextTrainTrack}
           />
         </div>
       </div>
