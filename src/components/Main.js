@@ -155,7 +155,7 @@ export default class Main extends Component {
         {/* The playing area, has the track, user avatar, track user is on, time of next train coming */}
         <div className="p-0 m-0" margin-botom="100px">
           {/* Track User is on*/}
-          <Track track={this.state.curTrack} />
+          <Track track={this.state.curTrack} maxTracks={this.state.tracks} />
         </div>
       </div>
     );
