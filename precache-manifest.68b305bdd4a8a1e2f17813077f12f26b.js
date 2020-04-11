@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "473fa86058c01805fe236dfacf1cccbe",
+    "revision": "3d2f5c14038d820d24d28b0a1903746b",
     "url": "/Hogwarts-Line-Hopping-Game/index.html"
   },
   {
-    "revision": "b0b581c2a94e67cbc8db",
+    "revision": "26eb5899cd3899c5d92c",
     "url": "/Hogwarts-Line-Hopping-Game/static/css/2.de424728.chunk.css"
   },
   {
-    "revision": "092bd96268b143209ae3",
-    "url": "/Hogwarts-Line-Hopping-Game/static/css/main.2333aacb.chunk.css"
+    "revision": "34f8e195e5871c57c85c",
+    "url": "/Hogwarts-Line-Hopping-Game/static/css/main.a8a95339.chunk.css"
   },
   {
-    "revision": "b0b581c2a94e67cbc8db",
-    "url": "/Hogwarts-Line-Hopping-Game/static/js/2.35117400.chunk.js"
+    "revision": "26eb5899cd3899c5d92c",
+    "url": "/Hogwarts-Line-Hopping-Game/static/js/2.ba238d98.chunk.js"
   },
   {
     "revision": "11a928b57aca5049fe950bf8bcde77c5",
-    "url": "/Hogwarts-Line-Hopping-Game/static/js/2.35117400.chunk.js.LICENSE.txt"
+    "url": "/Hogwarts-Line-Hopping-Game/static/js/2.ba238d98.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "092bd96268b143209ae3",
-    "url": "/Hogwarts-Line-Hopping-Game/static/js/main.29f86348.chunk.js"
+    "revision": "34f8e195e5871c57c85c",
+    "url": "/Hogwarts-Line-Hopping-Game/static/js/main.8a166f3c.chunk.js"
   },
   {
     "revision": "6fcaba759796df9b33d6",
