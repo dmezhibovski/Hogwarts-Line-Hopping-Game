@@ -7,7 +7,8 @@ export default class Clock extends Component {
             time: new Date(),
             nextTrain: this.props.nextTrain,
             timeLimit:this.props.timeLimit,
-            timer:0
+            timer:0,
+            gameover:false,
         }
         this.tick = this.tick.bind(this)
     }
@@ -42,9 +43,11 @@ export default class Clock extends Component {
     }
 
     render() {
+        let out
+        !this.state.gameover ? out=this.state.time.toLocaleTimeString() : out="GAME OVER"
         return (
             <div>
-                {this.state.time.toLocaleTimeString()}
+                {out}
             </div>
         )
     }
