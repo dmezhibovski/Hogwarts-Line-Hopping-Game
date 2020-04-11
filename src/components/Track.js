@@ -5,7 +5,7 @@ import Image from "react-bootstrap/Image";
 import Figure from "react-bootstrap/Figure";
 import FigureImage from "react-bootstrap/FigureImage";
 import FigureCaption from "react-bootstrap/FigureCaption";
-import "./../style/Track.css"
+import "./../style/Track.css";
 
 export default class Track extends Component {
   constructor(props) {
@@ -13,23 +13,19 @@ export default class Track extends Component {
     this.state = {
       trackNum: props.maxTracks,
       algoStatus: props.algoStatus,
-      incomingTrain: props.incomingTrain
+      incomingTrain: props.incomingTrain,
     };
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState((prevState) => ({
       algoStatus: nextProps.algoStatus,
-      incomingTrain: nextProps.incomingTrain
+      incomingTrain: nextProps.incomingTrain,
     }));
   }
 
   renderMultTracks(numOfTracks, hoboArr) {
-<<<<<<< HEAD
-    // let personLen = (750 / numOfTracks).toString();
-=======
-    let personLen = (50 + 200 / numOfTracks).toString(10);
->>>>>>> 94cde4a091f271e300149c808405fefc2d311aa4
+    let personLen = (150 + 200 / numOfTracks).toString(10);
     // let trackLen = (70 / numOfTracks).toString(10);
     let tracks = [];
     for (let i = 0; i < numOfTracks; i++) {
@@ -37,15 +33,16 @@ export default class Track extends Component {
       hoboArr.forEach((element) => {
         if (element[0] == i) {
           hobosOnTrack.push(
-            <Figure className='user'>
+            <Figure className="user">
               <Figure.Image
                 src={require("./../images/user.png")}
                 className="bobbing"
                 alt="this is alt"
+                width={personLen}
                 // fluid
               />
               <Figure.Caption className="text-white text-center">
-                Player
+                {element[1]}
               </Figure.Caption>
             </Figure>
           );
@@ -56,18 +53,17 @@ export default class Track extends Component {
         <div className="my-3">
           <div className="d-flex flex-row">
             {hobosOnTrack}
-            {
-              console.log("Train on track", this.state.incomingTrain)}
-            {
-              this.state.incomingTrain === i ?
-              <Image 
+            {console.log("Train on track", this.state.incomingTrain)}
+            {this.state.incomingTrain === i ? (
+              <Image
                 src={require("./../images/train-cartoon.png")}
                 className="train"
                 id="train"
                 alt="train"
-              /> :
+              />
+            ) : (
               <div className="train"></div>
-            }
+            )}
           </div>
           <div>
             <Image
