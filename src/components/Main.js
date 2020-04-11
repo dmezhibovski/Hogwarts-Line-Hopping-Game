@@ -58,7 +58,7 @@ export default class Main extends Component {
     //push new train onto list
     trainList.push({
       track: Math.floor(Math.random() * (this.state.tracks - 1) + 1),
-      time: new Date(new Date().getTime() + 35000),
+      time: new Date(new Date().getTime() + 12000),
     });
     //next train to come
     let nextTrain = trainList[0];
