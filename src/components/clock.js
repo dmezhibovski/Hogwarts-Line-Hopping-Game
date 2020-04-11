@@ -35,15 +35,9 @@ export default class Clock extends Component {
             timer:this.state.timer+1
         });
         if(this.state.timer === this.state.timeLimit){
-<<<<<<< HEAD
             console.log("Time over")
             this.componentWillUnmount()
             this.props.endGame()
-=======
-            this.setState({gameover:true})
-            this.render()
-            // clearInterval(this.timerID);
->>>>>>> 03831c62488e6607afe69b53b059da7d1432eaf2
         }
 
     }
