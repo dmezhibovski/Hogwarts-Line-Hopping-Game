@@ -33,7 +33,7 @@ export default class Track extends Component {
       hoboArr.forEach((element) => {
         if (element[0] == i) {
           hobosOnTrack.push(
-            <Figure className="user">
+            <Figure className="user mr-5">
               <Figure.Image
                 src={require("./../images/user.png")}
                 className="bobbing"
