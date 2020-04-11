@@ -25,6 +25,7 @@ export default class Main extends Component {
     // this.updateHealth = this.updateHealth.bind(this);
     this.sendTrain = this.sendTrain.bind(this);
     this.algoCallbackFun = this.algoCallbackFun.bind(this);
+    this.endGame=this.endGame.bind(this)
   }
 
   //arg: int points
@@ -76,6 +77,9 @@ export default class Main extends Component {
       trainsPassed: passedTrains,
     }));
     // setTimeout(() => {}, 1000)
+  }
+  endGame(){
+
   }
 
   algoCallbackFun(list) {

@@ -25,11 +25,7 @@ export default class Track extends Component {
   }
 
   renderMultTracks(numOfTracks, hoboArr) {
-<<<<<<< HEAD
-    // let personLen = (750 / numOfTracks).toString();
-=======
     let personLen = (50 + 200 / numOfTracks).toString(10);
->>>>>>> 94cde4a091f271e300149c808405fefc2d311aa4
     // let trackLen = (70 / numOfTracks).toString(10);
     let tracks = [];
     for (let i = 0; i < numOfTracks; i++) {
