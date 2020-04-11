@@ -96,7 +96,7 @@ export default class AlgorithmHandler extends Component {
   algoMakesAMove() {
     let hoboPos = [];
     this.state.algorithms.forEach((element) => {
-      hoboPos.push([element.curTrack, element.constructor.name]);
+      hoboPos.push([element.curTrack, element.name]);
     });
     this.state.mainCallback(hoboPos);
   }
@@ -109,7 +109,7 @@ export default class AlgorithmHandler extends Component {
           {this.state.algorithms.map((player, index) => {
             return (
               <li className="list-group-item font-weight-bold">
-                {player.constructor.name} score: {player.getScore()}
+                {player.name} score: {player.getScore()}
               </li>
             );
           })}

@@ -9,6 +9,7 @@ export class Algo {
     this.trainPassed = 0;
     this.lastMove = Date.now();
     this.eventFunc = eventCallback;
+    this.name = "algo";
   }
   receiveHit(info) {
     this.trainsHit++;
@@ -68,6 +69,7 @@ export class Algo {
 export class BasicAlgo extends Algo {
   constructor(startTrack, maxTrack, callBackFun) {
     super(startTrack, maxTrack, callBackFun);
+    this.name = "BasicAglo";
   }
   receivePlane(info) {
     this.trainPassed++;
@@ -83,6 +85,7 @@ export class BasicAlgo extends Algo {
 export class SmartAlgo extends Algo {
   constructor(startTrack, maxTrack, callBackFun) {
     super(startTrack, maxTrack, callBackFun);
+    this.name = "SmartAlgo";
   }
   receivePlane(info) {
     this.trainPassed++;
@@ -127,6 +130,7 @@ export class BigJumpAlgo extends Algo {
     this.maxTrack = maxTrack;
     this.lastPlane = [];
     this.curTrack = this.track;
+    this.name = "BigJumpAlgo";
   }
   receiveHit(info) {
     super.receiveHit(info);
