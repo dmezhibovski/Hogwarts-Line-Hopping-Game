@@ -37,6 +37,7 @@ export default class Clock extends Component {
         if(this.state.timer === this.state.timeLimit){
             this.setState({gameover:true})
             this.render()
+            // clearInterval(this.timerID);
         }
 
     }

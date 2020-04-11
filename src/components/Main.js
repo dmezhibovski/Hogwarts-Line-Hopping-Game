@@ -25,28 +25,7 @@ export default class Main extends Component {
     // this.updateHealth = this.updateHealth.bind(this);
     this.sendTrain = this.sendTrain.bind(this);
     this.algoCallbackFun = this.algoCallbackFun.bind(this);
-    this.endGame=this.endGame.bind(this)
   }
-
-  //arg: int points
-  //increase score by points
-  // updateScore(points) {
-  //   console.log(`Current Score: ${this.state.score}`);
-  //   this.setState((prevState) => ({
-  //     score: prevState.score + points,
-  //   }));
-  //   console.log(`New Score: ${this.state.score}`);
-  // }
-
-  //arg: int damage
-  //decrease health by damage
-  // updateHealth(damage) {
-  //   console.log(`Current Health: ${this.state.health}`);
-  //   this.setState((prevState) => ({
-  //     health: prevState.health - damage,
-  //   }));
-  //   console.log(`New Health: ${this.state.health}`);
-  // }
 
   // train departure
   sendTrain() {
@@ -77,9 +56,6 @@ export default class Main extends Component {
       trainsPassed: passedTrains,
     }));
     // setTimeout(() => {}, 1000)
-  }
-  endGame(){
-
   }
 
   algoCallbackFun(list) {
