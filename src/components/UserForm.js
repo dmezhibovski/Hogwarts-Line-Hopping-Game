@@ -12,7 +12,7 @@ function play() {
 
   for (let i = 1; i < 6; i++) {
     let track = Math.floor(Math.random() * 4);
-    let delay = i * 2000;
+    let delay = i * 5000;
     trains.push({
       track: track,
       time: new Date(new Date().getTime() + delay),

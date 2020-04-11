@@ -1,5 +1,4 @@
 .train {
-    /* position: absolute; */
     right: 0;
     bottom: 0;
     width: 50px;
@@ -16,8 +15,6 @@
 
 .user {
     z-index: 1;
-    /* position: absolute; */
-    border: 1px solid red;
     margin: 0;
     padding: 0;
     width: 50px;
@@ -26,7 +23,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
     .train {
-      animation: move infinite 2s linear;
+      animation: move infinite 5s linear;
     }
   }
   
@@ -36,7 +33,7 @@
         /* right: 0px; */
     }
     to {
-        transform: translateX(-20vw);
+        transform: translateX(-250vw);
         /* left: 0px; */
     }
   }

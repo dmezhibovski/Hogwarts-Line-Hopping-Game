@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOM from 'react-dom';
 import Track from "./Track";
 import Clock from "./clock";
 import AlgorithmHandler from "./AlgorithmHandler";
@@ -25,6 +26,7 @@ export default class Main extends Component {
     // this.updateHealth = this.updateHealth.bind(this);
     this.sendTrain = this.sendTrain.bind(this);
     this.algoCallbackFun = this.algoCallbackFun.bind(this);
+    this.endGame = this.endGame.bind(this)
   }
 
   //arg: int points
@@ -58,7 +60,7 @@ export default class Main extends Component {
     //push new train onto list
     trainList.push({
       track: Math.floor(Math.random() * (this.state.tracks - 1) + 1),
-      time: new Date(new Date().getTime() + 12000),
+      time: new Date(new Date().getTime() + 25000),
     });
     //next train to come
     let nextTrain = trainList[0];
@@ -76,6 +78,18 @@ export default class Main extends Component {
       trainsPassed: passedTrains,
     }));
     // setTimeout(() => {}, 1000)
+  }
+
+  endGame() {
+    let elem = document.getElementById('game-area')
+    elem.innerHTML = ""
+    ReactDOM.render(
+    <div className="d-flex vh-100 justify-content-center align-items-center">
+      <h1 className='display-1'>
+        Game Over
+      </h1>
+    </div>,
+    elem)
   }
 
   algoCallbackFun(list) {
@@ -100,6 +114,7 @@ export default class Main extends Component {
                 nextTrain={this.state.nextTrain}
                 sendTrain={this.sendTrain}
                 timeLimit={this.state.gameLength}
+                endGame={this.endGame}
               />
             </h3>
           </div>
