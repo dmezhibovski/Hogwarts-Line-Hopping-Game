@@ -1,28 +1,28 @@
 {
   "files": {
     "main.css": "/Hogwarts-Line-Hopping-Game/static/css/main.2333aacb.chunk.css",
-    "main.js": "/Hogwarts-Line-Hopping-Game/static/js/main.13d2d837.chunk.js",
-    "main.js.map": "/Hogwarts-Line-Hopping-Game/static/js/main.13d2d837.chunk.js.map",
-    "runtime-main.js": "/Hogwarts-Line-Hopping-Game/static/js/runtime-main.3a9e27f1.js",
-    "runtime-main.js.map": "/Hogwarts-Line-Hopping-Game/static/js/runtime-main.3a9e27f1.js.map",
+    "main.js": "/Hogwarts-Line-Hopping-Game/static/js/main.29f86348.chunk.js",
+    "main.js.map": "/Hogwarts-Line-Hopping-Game/static/js/main.29f86348.chunk.js.map",
+    "runtime-main.js": "/Hogwarts-Line-Hopping-Game/static/js/runtime-main.707eeb4b.js",
+    "runtime-main.js.map": "/Hogwarts-Line-Hopping-Game/static/js/runtime-main.707eeb4b.js.map",
     "static/css/2.de424728.chunk.css": "/Hogwarts-Line-Hopping-Game/static/css/2.de424728.chunk.css",
-    "static/js/2.545ea809.chunk.js": "/Hogwarts-Line-Hopping-Game/static/js/2.545ea809.chunk.js",
-    "static/js/2.545ea809.chunk.js.map": "/Hogwarts-Line-Hopping-Game/static/js/2.545ea809.chunk.js.map",
+    "static/js/2.35117400.chunk.js": "/Hogwarts-Line-Hopping-Game/static/js/2.35117400.chunk.js",
+    "static/js/2.35117400.chunk.js.map": "/Hogwarts-Line-Hopping-Game/static/js/2.35117400.chunk.js.map",
     "index.html": "/Hogwarts-Line-Hopping-Game/index.html",
-    "precache-manifest.9b5e605f0f342446cf4ddd6124597ec3.js": "/Hogwarts-Line-Hopping-Game/precache-manifest.9b5e605f0f342446cf4ddd6124597ec3.js",
+    "precache-manifest.370907f7ab394a8a823a88d494feddd0.js": "/Hogwarts-Line-Hopping-Game/precache-manifest.370907f7ab394a8a823a88d494feddd0.js",
     "service-worker.js": "/Hogwarts-Line-Hopping-Game/service-worker.js",
     "static/css/2.de424728.chunk.css.map": "/Hogwarts-Line-Hopping-Game/static/css/2.de424728.chunk.css.map",
     "static/css/main.2333aacb.chunk.css.map": "/Hogwarts-Line-Hopping-Game/static/css/main.2333aacb.chunk.css.map",
-    "static/js/2.545ea809.chunk.js.LICENSE.txt": "/Hogwarts-Line-Hopping-Game/static/js/2.545ea809.chunk.js.LICENSE.txt",
+    "static/js/2.35117400.chunk.js.LICENSE.txt": "/Hogwarts-Line-Hopping-Game/static/js/2.35117400.chunk.js.LICENSE.txt",
     "static/media/tilted-tracks.png": "/Hogwarts-Line-Hopping-Game/static/media/tilted-tracks.e3ce708f.png",
     "static/media/train-cartoon.png": "/Hogwarts-Line-Hopping-Game/static/media/train-cartoon.aa7e7327.png",
     "static/media/user.png": "/Hogwarts-Line-Hopping-Game/static/media/user.5ea17709.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.3a9e27f1.js",
+    "static/js/runtime-main.707eeb4b.js",
     "static/css/2.de424728.chunk.css",
-    "static/js/2.545ea809.chunk.js",
+    "static/js/2.35117400.chunk.js",
     "static/css/main.2333aacb.chunk.css",
-    "static/js/main.13d2d837.chunk.js"
+    "static/js/main.29f86348.chunk.js"
   ]
 }

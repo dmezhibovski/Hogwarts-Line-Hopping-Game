@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Hogwarts-Line-Hopping-Game/precache-manifest.9b5e605f0f342446cf4ddd6124597ec3.js"
+  "/Hogwarts-Line-Hopping-Game/precache-manifest.370907f7ab394a8a823a88d494feddd0.js"
 );
 
 self.addEventListener('message', (event) => {
